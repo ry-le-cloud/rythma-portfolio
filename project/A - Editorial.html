@@ -281,6 +281,7 @@
     position: relative; width: 100%; aspect-ratio: 16/9;
     background: #e8e8e8; overflow: hidden; margin-bottom: 14px;
   }
+  .yt-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .yt-thumb image-slot { position: absolute; inset: 0; }
   .yt-play {
     position: absolute; top: 50%; left: 50%;
@@ -951,33 +952,33 @@
     </div>
 
     <div class="yt-grid">
-      <a class="yt-item" href="#">
+      <a class="yt-item" href="https://www.youtube.com/watch?v=tTiWQa6Umok&list=PLceXkZ2guxFLyXZNavrIZAAeLV4xmV-LV&index=5" target="_blank" rel="noopener">
         <div class="yt-thumb">
-          <image-slot id="A-yt-s01" placeholder="S01 — The Return of Diaspora" style="width:100%;height:100%;"></image-slot>
+          <img src="https://img.youtube.com/vi/tTiWQa6Umok/maxresdefault.jpg" alt="Diaspora Returns">
           <div class="yt-play">▶</div>
         </div>
         <div class="yt-season">S/01</div>
         <div class="yt-label">The Return of <span class="hand">Diaspora</span></div>
       </a>
-      <a class="yt-item" href="#">
+      <a class="yt-item" href="https://www.youtube.com/watch?v=ohwv7zfYZvc&list=PLceXkZ2guxFLyXZNavrIZAAeLV4xmV-LV&index=1" target="_blank" rel="noopener">
         <div class="yt-thumb">
-          <image-slot id="A-yt-s02" placeholder="S02 — Cairo's Creative Community" style="width:100%;height:100%;"></image-slot>
+          <img src="https://img.youtube.com/vi/ohwv7zfYZvc/maxresdefault.jpg" alt="Cairo Creative Community">
           <div class="yt-play">▶</div>
         </div>
         <div class="yt-season">S/02</div>
         <div class="yt-label"><span class="hand">Cairo's</span> Creative Community</div>
       </a>
-      <a class="yt-item" href="#">
+      <a class="yt-item" href="https://www.youtube.com/watch?v=OmooHhOFzt0&list=PLceXkZ2guxFLyXZNavrIZAAeLV4xmV-LV&index=10" target="_blank" rel="noopener">
         <div class="yt-thumb">
-          <image-slot id="A-yt-s03" placeholder="S03 — The Sounds of Saudi Arabia" style="width:100%;height:100%;"></image-slot>
+          <img src="https://img.youtube.com/vi/OmooHhOFzt0/maxresdefault.jpg" alt="Sounds of Saudi Arabia">
           <div class="yt-play">▶</div>
         </div>
         <div class="yt-season">S/03</div>
         <div class="yt-label">The Sounds of <span class="hand">Saudi Arabia</span></div>
       </a>
-      <a class="yt-item" href="#">
+      <a class="yt-item" href="https://www.youtube.com/watch?v=oHX4AclWch8&list=PLceXkZ2guxFLyXZNavrIZAAeLV4xmV-LV&index=6" target="_blank" rel="noopener">
         <div class="yt-thumb">
-          <image-slot id="A-yt-s04" placeholder="S04 — We Belong To The Land" style="width:100%;height:100%;"></image-slot>
+          <img src="https://img.youtube.com/vi/oHX4AclWch8/maxresdefault.jpg" alt="We Belong to the Land">
           <div class="yt-play">▶</div>
         </div>
         <div class="yt-season">S/04</div>
@@ -986,30 +987,25 @@
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 96px;">
-      <div>
-        <image-slot id="A-doc-firdaus" placeholder="Firdaus Orchestra still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
-        <div style="margin-top: 16px;">
-          <div class="work-title">Firdaus Orchestra</div>
-          <span class="proj-role">Producer / Director</span>
-          <p class="proj-desc">A documentary portrait of the world's first orchestra composed entirely of women refugees — exploring music, identity, and belonging across borders.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Direction</span>
-            <span class="proj-tag">Research</span>
-            <span class="proj-tag">Editorial Strategy</span>
-          </div>
+      <a class="yt-item" href="https://www.youtube.com/watch?v=AvryvwgN4SI" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/AvryvwgN4SI/maxresdefault.jpg" alt="Firdaus Orchestra">
+          <div class="yt-play">▶</div>
         </div>
-      </div>
-      <div>
-        <image-slot id="A-doc-freedom" placeholder="Freedom By Design still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
-        <div style="margin-top: 16px;">
-          <div class="work-title"><span class="hand">Freedom</span> By Design</div>
+        <div style="margin-top: 14px;">
+          <div class="yt-label">Firdaus <span class="hand">Orchestra</span></div>
+          <span class="proj-role">Producer / Director</span>
+          <p class="proj-desc" style="margin-top:8px;">Firdaus is an all-women ensemble that thrilled audiences during Expo 2020 Dubai. With 24 nationalities, Firdaus Orchestra thrives on its cultural diversity, bringing classically trained musicians from across the world to redefine the way different genres and disciplines of music come together to create in harmony.</p>
+        </div>
+      </a>
+      <div class="yt-item">
+        <div class="yt-thumb">
+          <image-slot id="A-doc-freedom" placeholder="Freedom By Design" style="width:100%;height:100%;"></image-slot>
+        </div>
+        <div style="margin-top: 14px;">
+          <div class="yt-label"><span class="hand">Freedom</span> By Design</div>
           <span class="proj-role">Executive Producer / Creative Direction</span>
-          <p class="proj-desc">A multi-format film project exploring the stories of women across the MENA region through archive, testimony, and visual storytelling. Led creative development, narrative structure, and editorial direction throughout.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Creative Development</span>
-            <span class="proj-tag">Script Development</span>
-            <span class="proj-tag">Production Oversight</span>
-          </div>
+          <p class="proj-desc" style="margin-top:8px;">A multi-format film project exploring the stories of women across the MENA region through archive, testimony, and visual storytelling. Led creative development, narrative structure, and editorial direction throughout.</p>
         </div>
       </div>
     </div>
@@ -1024,12 +1020,17 @@
   </div>
   <div class="section-body">
     <div class="pod-feature">
-      <image-slot id="A-pod-sage" placeholder="Sage Takes Thyme — podcast art" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+      <a href="https://www.youtube.com/watch?v=9NZsoHThV0M&t=45s" target="_blank" rel="noopener" class="yt-item" style="display:block;">
+        <div class="yt-thumb" style="aspect-ratio:16/9;">
+          <img src="https://img.youtube.com/vi/9NZsoHThV0M/maxresdefault.jpg" alt="Sage Takes Thyme">
+          <div class="yt-play">▶</div>
+        </div>
+      </a>
       <div class="pod-detail">
         <span class="proj-role">Producer &amp; Director</span>
         <h3>Sage Takes <span class="hand">Thyme</span></h3>
-        <p class="proj-desc">A food and culture podcast exploring the intersection of identity, memory, and cooking — produced and directed from concept through post-production, including narrative structure, sound design, and editorial direction.</p>
-        <a class="pod-link" href="#">Listen →</a>
+        <p class="proj-desc">This is not a cooking show, but it will nourish your soul. Sage Takes Thyme expands the regional table, bringing in more voices, more lived realities, and more difficult questions shaping the Arab world and its diaspora today. We dive into the forces influencing women's lives across the region: power, labor, technology, identity, resistance, and the politics of visibility. We examine not only what is changing, but who is paying the price, and who is rewriting the rules.</p>
+        <a class="pod-link" href="https://www.youtube.com/watch?v=9NZsoHThV0M&t=45s" target="_blank" rel="noopener">Listen →</a>
       </div>
     </div>
   </div>
