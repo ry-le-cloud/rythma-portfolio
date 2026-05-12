@@ -247,57 +247,69 @@
   }
   .format-row:hover .farrow { color: var(--accent); transform: translateX(8px); }
 
-  /* ---- DOCUMENTARY DETAIL ---- */
-  .doc-detail {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
-  }
-  .doc-detail .doc-img-block .slot { width: 100%; aspect-ratio: 4/5; }
-  .doc-detail h3 {
+  /* ---- YOUTUBE THUMBNAILS ---- */
+  .doc-intro { max-width: 720px; margin-bottom: 56px; }
+  .doc-intro h3 {
     font-family: var(--display);
     font-size: clamp(48px, 5vw, 80px);
-    line-height: 0.95;
-    margin: 0 0 32px;
-    text-transform: uppercase;
-    letter-spacing: 0.015em;
-    font-weight: 400;
+    line-height: 0.95; margin: 0 0 24px;
+    text-transform: uppercase; letter-spacing: 0.015em; font-weight: 400;
   }
-  .doc-detail h3 .hand {
-    font-family: var(--hand); font-weight: 600;
-    color: var(--accent);
-    font-size: 0.9em; line-height: 1;
-    text-transform: none; letter-spacing: 0;
+  .doc-intro h3 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 0.9em; text-transform: none; letter-spacing: 0;
     display: inline-block; transform: rotate(-2deg);
   }
-  .doc-detail p {
+  .doc-intro p {
     font-family: var(--display);
-    font-size: clamp(20px, 1.8vw, 26px);
-    line-height: 1.3;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    max-width: 28ch;
-    color: var(--ink);
+    font-size: clamp(18px, 1.6vw, 22px); line-height: 1.35;
+    text-transform: uppercase; letter-spacing: 0.01em;
+    color: var(--ink); margin: 0;
   }
-  .seasons { margin-top: 40px; }
-  .seasons .season {
-    display: grid; grid-template-columns: 60px 1fr; gap: 16px; align-items: baseline;
-    padding: 20px 0; border-top: 1px solid var(--rule);
-  }
-  .seasons .season:last-child { border-bottom: 1px solid var(--rule); }
-  .seasons .season .stitle {
-    font-family: var(--display);
-    font-size: clamp(24px, 2.4vw, 34px);
-    text-transform: uppercase;
-    letter-spacing: 0.015em;
-  }
-  .seasons .season .stitle .hand {
+  .doc-intro p .hand {
     font-family: var(--hand); font-weight: 600; color: var(--accent);
     font-size: 1.1em; text-transform: none; letter-spacing: 0;
-    display: inline-block; transform: rotate(-2deg); margin-right: 2px;
   }
-  .seasons .season .sn {
+  .yt-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+    margin-bottom: 96px;
+  }
+  .yt-item { display: block; text-decoration: none; }
+  .yt-thumb {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    background: #e8e8e8; overflow: hidden; margin-bottom: 14px;
+  }
+  .yt-thumb image-slot { position: absolute; inset: 0; }
+  .yt-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(0,0,0,0.65);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; line-height: 1;
+    padding-left: 4px;
+    transition: background .2s, transform .2s;
+    pointer-events: none;
+  }
+  .yt-item:hover .yt-play { background: var(--accent); transform: translate(-50%,-50%) scale(1.08); }
+  .yt-season {
+    font-family: var(--display); font-size: 13px;
+    color: var(--ink-3); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .yt-label {
     font-family: var(--display);
-    font-size: 18px; color: var(--ink-3); letter-spacing: 0.08em;
+    font-size: clamp(20px, 2vw, 28px);
+    text-transform: uppercase; letter-spacing: 0.015em; line-height: 1;
+    transition: color .2s;
   }
+  .yt-label .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.05em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .yt-item:hover .yt-label { color: var(--accent); }
+  @media (max-width: 900px) { .yt-grid { grid-template-columns: 1fr; } }
 
   /* ---- SHORT FORM / SOCIAL ---- */
   .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; }
@@ -585,7 +597,6 @@
   <a class="brand" href="#top">Rythma Ekanayake<span class="hand">/ portfolio</span></a>
   <nav class="nav">
     <a href="#about">About</a>
-    <a href="#work">Work</a>
     <a href="#documentary">Documentary</a>
     <a href="#podcast">Podcast</a>
     <a href="#writing">Writing</a>
@@ -628,8 +639,8 @@
   </div>
 </section>
 
-<!-- SELECTED WORK -->
-<section class="section" id="work">
+<!-- SELECTED WORK (removed) -->
+<!-- <section class="section" id="work">
   <div class="section-head">
     <div class="section-label">Selected Work</div>
     <h2 class="section-title" style="font-size: 60px">Selected <span class="hand">Works</span>.</h2>
@@ -695,7 +706,7 @@
 
     </div>
   </div>
-</section>
+-->
 
 <!-- FORMATS INDEX -->
 <section class="section" id="formats">
@@ -741,33 +752,44 @@
     <h2 class="section-title">Directing &amp; long-form <span class="hand">storytelling</span>.</h2>
   </div>
   <div class="section-body">
-    <div class="doc-detail">
-      <div class="doc-img-block">
-        <image-slot id="A-doc-hero" placeholder="Everything Has Changed — hero still" style="width:100%; aspect-ratio: 4/5;"></image-slot>
-      </div>
-      <div>
-        <h3><span class="hand">Everything</span><br>Has Changed</h3>
-        <p>An ongoing docu-series that travels from city to city to highlight the different ways in which our lives have changed drastically over the last decade, the realities we continue to carry with us and the new narratives we can <span class="hand">learn to adopt</span>.</p>
+    <div class="doc-intro">
+      <h3><span class="hand">Everything</span><br>Has Changed</h3>
+      <p>An ongoing docu-series that travels from city to city to highlight the different ways in which our lives have changed drastically over the last decade, the realities we continue to carry with us and the new narratives we can <span class="hand">learn to adopt</span>.</p>
+    </div>
 
-        <div class="seasons">
-          <div class="season">
-            <span class="sn">S/01</span>
-            <span class="stitle">The Return of <span class="hand">Diaspora</span></span>
-          </div>
-          <div class="season">
-            <span class="sn">S/02</span>
-            <span class="stitle"><span class="hand">Cairo's</span> Creative Community</span>
-          </div>
-          <div class="season">
-            <span class="sn">S/03</span>
-            <span class="stitle">The Sounds of Saudi Arabia</span>
-          </div>
-          <div class="season">
-            <span class="sn">S/04</span>
-            <span class="stitle">We Belong to <span class="hand">the Land</span></span>
-          </div>
+    <div class="yt-grid">
+      <a class="yt-item" href="#">
+        <div class="yt-thumb">
+          <image-slot id="A-yt-s01" placeholder="S01 — The Return of Diaspora" style="width:100%;height:100%;"></image-slot>
+          <div class="yt-play">▶</div>
         </div>
-      </div>
+        <div class="yt-season">S/01</div>
+        <div class="yt-label">The Return of <span class="hand">Diaspora</span></div>
+      </a>
+      <a class="yt-item" href="#">
+        <div class="yt-thumb">
+          <image-slot id="A-yt-s02" placeholder="S02 — Cairo's Creative Community" style="width:100%;height:100%;"></image-slot>
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-season">S/02</div>
+        <div class="yt-label"><span class="hand">Cairo's</span> Creative Community</div>
+      </a>
+      <a class="yt-item" href="#">
+        <div class="yt-thumb">
+          <image-slot id="A-yt-s03" placeholder="S03 — The Sounds of Saudi Arabia" style="width:100%;height:100%;"></image-slot>
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-season">S/03</div>
+        <div class="yt-label">The Sounds of <span class="hand">Saudi Arabia</span></div>
+      </a>
+      <a class="yt-item" href="#">
+        <div class="yt-thumb">
+          <image-slot id="A-yt-s04" placeholder="S04 — We Belong To The Land" style="width:100%;height:100%;"></image-slot>
+          <div class="yt-play">▶</div>
+        </div>
+        <div class="yt-season">S/04</div>
+        <div class="yt-label">We Belong to <span class="hand">the Land</span></div>
+      </a>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px;">
@@ -793,14 +815,13 @@
   </div>
 </section>
 
-<!-- SHORT FORM / SOCIAL -->
+<!-- SOCIAL & VIDEO -->
 <section class="section" id="podcast">
   <div class="section-head">
-    <div class="section-label">Short Form Production</div>
-    <h2 class="section-title">Producing <span class="hand">short form</span> &amp; social.</h2>
+    <div class="section-label">Social &amp; Video</div>
+    <h2 class="section-title">Social &amp; <span class="hand">video</span>.</h2>
   </div>
   <div class="section-body">
-    <div class="reel-header">Social &amp; Video</div>
     <div class="reel-scroll">
       <a class="reel-item" href="#">
         <div class="reel-thumb"></div>
