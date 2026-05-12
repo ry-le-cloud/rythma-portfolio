@@ -771,14 +771,13 @@
 
   /* ---- ABOUT ---- */
   .about-text {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-    max-width: 1100px; margin: 0 auto;
+    max-width: 900px; margin: 0 auto;
   }
   .about-text p {
     font-family: var(--display);
     font-size: clamp(22px, 2.2vw, 30px);
     line-height: 1.25;
-    margin: 0 0 24px;
+    margin: 0;
     color: var(--ink);
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -941,8 +940,8 @@
     font-size: 18px; color: var(--ink-3); letter-spacing: 0.08em;
   }
 
-  /* ---- PODCAST ---- */
-  .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  /* ---- SHORT FORM / SOCIAL ---- */
+  .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; }
   .pod-item .slot { width: 100%; aspect-ratio: 1/1; margin-bottom: 16px; }
   .pod-item h4 {
     font-family: var(--display);
@@ -959,6 +958,44 @@
     display: inline-block; transform: rotate(-2deg);
   }
   .pod-item:hover h4 { color: var(--accent); }
+
+  /* reel scroll */
+  .reel-header {
+    font-family: var(--display); font-size: 14px; letter-spacing: 0.16em;
+    color: var(--ink-3); text-transform: uppercase;
+    padding-top: 16px; border-top: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+  .reel-scroll {
+    display: flex; gap: 20px;
+    overflow-x: auto; padding-bottom: 16px;
+    scrollbar-width: thin; scrollbar-color: var(--rule) transparent;
+  }
+  .reel-scroll::-webkit-scrollbar { height: 3px; }
+  .reel-scroll::-webkit-scrollbar-track { background: transparent; }
+  .reel-scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+  .reel-item {
+    flex: 0 0 180px; display: block; text-decoration: none;
+  }
+  .reel-item .reel-thumb {
+    width: 180px; aspect-ratio: 9/16;
+    background: #f1f1f1;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: opacity .2s;
+  }
+  .reel-item:hover .reel-thumb { opacity: 0.8; }
+  .reel-item .reel-title {
+    font-family: var(--display);
+    font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em;
+    line-height: 1.1; transition: color .2s;
+  }
+  .reel-item:hover .reel-title { color: var(--accent); }
+  .reel-item .reel-platform {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 16px; letter-spacing: 0; margin-top: 4px; display: block;
+  }
 
   /* ---- WRITING ---- */
   .writing-list { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
@@ -988,13 +1025,17 @@
     display: inline-block; transform: rotate(-2deg);
   }
   .writing-item .wpub {
-    font-family: var(--hand); font-weight: 600;
-    font-size: clamp(16px, 1.4vw, 20px);
-    color: var(--accent);
+    display: flex; align-items: center; justify-content: flex-end;
     white-space: nowrap;
-    opacity: 0.85;
-    letter-spacing: 0;
   }
+  .writing-item .wpub img {
+    height: 22px; width: auto; max-width: 120px;
+    object-fit: contain; object-position: center;
+    filter: grayscale(1); opacity: 0.55;
+    transition: filter .2s, opacity .2s;
+    display: block;
+  }
+  .writing-item:hover .wpub img { filter: grayscale(0); opacity: 1; }
   .writing-item .warr {
     font-family: var(--display); font-size: 24px;
     text-align: right; color: var(--ink-3);
@@ -1223,12 +1264,7 @@
   </div>
   <div class="section-body">
     <div class="about-text">
-      <div>
-        <p>Background in digital media, a philosophy degree &amp; nearly a decade of producing <span class="hand">stories that matter</span>.</p>
-      </div>
-      <div>
-        <p>I foreground the stories of women &amp; communities that rarely get to be seen on their <span class="hand">own terms</span>.</p>
-      </div>
+      <p>Background in digital media, a philosophy degree &amp; nearly a decade of producing <span class="hand">stories that matter</span>. I foreground the stories of women &amp; communities that rarely get to be seen on their <span class="hand">own terms</span>.</p>
     </div>
   </div>
 </section>
@@ -1237,24 +1273,16 @@
 <section class="section" id="work">
   <div class="section-head">
     <div class="section-label">Selected Work</div>
-    <h2 class="section-title" style="font-size: 60px">A small <span class="hand">index</span> of recent work.</h2>
+    <h2 class="section-title" style="font-size: 60px">Selected <span class="hand">Works</span>.</h2>
   </div>
   <div class="section-body">
     <div class="works-grid">
 
-      <a class="work w-7" href="#documentary">
-        <image-slot id="A-work-everything" placeholder="Everything Has Changed — film still" style="width:100%; aspect-ratio: 16/10;"></image-slot>
+      <a class="work w-8" href="#documentary">
+        <image-slot id="A-work-everything" placeholder="Everything Has Changed — film still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
           <div class="work-title">Everything <span class="hand">has changed</span></div>
           <div class="work-role">director</div>
-        </div>
-      </a>
-
-      <a class="work w-5" href="#campaigns">
-        <image-slot id="A-work-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 4/5;"></image-slot>
-        <div class="work-meta">
-          <div class="work-title">May Calamawy</div>
-          <div class="work-role">producer</div>
         </div>
       </a>
 
@@ -1266,14 +1294,6 @@
         </div>
       </a>
 
-      <a class="work w-4" href="#events">
-        <image-slot id="A-work-womena" placeholder="Womena × Dubai Design Week" style="width:100%; aspect-ratio: 3/4;"></image-slot>
-        <div class="work-meta">
-          <div class="work-title">A World of <span class="hand">Womena</span></div>
-          <div class="work-role">curator</div>
-        </div>
-      </a>
-
       <a class="work w-4" href="#documentary">
         <image-slot id="A-work-freedom" placeholder="Freedom By Design short film" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
@@ -1282,40 +1302,32 @@
         </div>
       </a>
 
-      <a class="work w-7" href="#podcast">
-        <image-slot id="A-work-sage" placeholder="Sage Takes Thyme — podcast art" style="width:100%; aspect-ratio: 16/10;"></image-slot>
+      <a class="work w-4" href="#podcast">
+        <image-slot id="A-work-sage" placeholder="Sage Takes Thyme — podcast art" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
           <div class="work-title">Sage Takes <span class="hand">Thyme</span></div>
           <div class="work-role">producer</div>
         </div>
       </a>
 
-      <a class="work w-5" href="#writing">
-        <image-slot id="A-work-dazed" placeholder="Dazed MENA — Voices From The Brink" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <a class="work w-4" href="#writing">
+        <image-slot id="A-work-dazed" placeholder="Dazed MENA — Voices From The Brink" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
           <div class="work-title">Voices From <span class="hand">The Brink</span></div>
           <div class="work-role">writer</div>
         </div>
       </a>
 
-      <a class="work w-3" href="#campaigns">
+      <a class="work w-6" href="#campaigns">
         <image-slot id="A-work-diesel" placeholder="Diesel editorial" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
-          <div class="work-title">Diesel</div>
+          <div class="work-title"><span class="hand">Diesel</span></div>
           <div class="work-role">producer</div>
         </div>
       </a>
 
-      <a class="work w-4" href="#campaigns">
-        <image-slot id="A-work-nike" placeholder="Nike × Womena — Nelly Attar" style="width:100%; aspect-ratio: 1/1;"></image-slot>
-        <div class="work-meta">
-          <div class="work-title">Nike × Womena</div>
-          <div class="work-role">writer · producer</div>
-        </div>
-      </a>
-
-      <a class="work w-5" href="#events">
-        <image-slot id="A-work-soledxb" placeholder="SoleDXB activation" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+      <a class="work w-6" href="#events">
+        <image-slot id="A-work-soledxb" placeholder="SoleDXB activation" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div class="work-meta">
           <div class="work-title">SoleDXB</div>
           <div class="work-role">curator</div>
@@ -1376,7 +1388,7 @@
       </div>
       <div>
         <h3><span class="hand">Everything</span><br>Has Changed</h3>
-        <p>A docu-series that travels city to city — the realities we carry &amp; the new narratives we can <span class="hand">learn to adopt</span>.</p>
+        <p>An ongoing docu-series that travels from city to city to highlight the different ways in which our lives have changed drastically over the last decade, the realities we continue to carry with us and the new narratives we can <span class="hand">learn to adopt</span>.</p>
 
         <div class="seasons">
           <div class="season">
@@ -1390,6 +1402,10 @@
           <div class="season">
             <span class="sn">S/03</span>
             <span class="stitle">The Sounds of Saudi Arabia</span>
+          </div>
+          <div class="season">
+            <span class="sn">S/04</span>
+            <span class="stitle">We Belong to <span class="hand">the Land</span></span>
           </div>
         </div>
       </div>
@@ -1418,11 +1434,11 @@
   </div>
 </section>
 
-<!-- PODCAST -->
+<!-- SHORT FORM / SOCIAL -->
 <section class="section" id="podcast">
   <div class="section-head">
-    <div class="section-label">Podcast Production</div>
-    <h2 class="section-title">Producing &amp; directing <span class="hand">sonic stories</span>.</h2>
+    <div class="section-label">Short Form Production</div>
+    <h2 class="section-title">Producing <span class="hand">short form</span> &amp; social.</h2>
   </div>
   <div class="section-body">
     <div class="pod-grid">
@@ -1439,6 +1455,40 @@
         <h4>Studio <span class="hand">production</span></h4>
       </div>
     </div>
+
+    <div class="reel-header">Social &amp; Video</div>
+    <div class="reel-scroll">
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">Instagram</span>
+      </a>
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">Instagram</span>
+      </a>
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">YouTube</span>
+      </a>
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">YouTube</span>
+      </a>
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">TikTok</span>
+      </a>
+      <a class="reel-item" href="#">
+        <div class="reel-thumb"></div>
+        <div class="reel-title">Add title</div>
+        <span class="reel-platform">TikTok</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1453,25 +1503,25 @@
       <a class="writing-item" href="#">
         <span class="wn">01</span>
         <span class="wtitle">Voices From <span class="hand">The Brink</span></span>
-        <span class="wpub">for Dazed MENA</span>
+        <span class="wpub"><img src="logos/dazed-mena.png" alt="Dazed MENA"></span>
         <span class="warr">→</span>
       </a>
       <a class="writing-item" href="#">
         <span class="wn">02</span>
         <span class="wtitle">Do women in the region need <span class="hand">feminism?</span></span>
-        <span class="wpub">for Womena</span>
+        <span class="wpub"><img src="logos/womena.png" alt="Womena"></span>
         <span class="warr">→</span>
       </a>
       <a class="writing-item" href="#">
         <span class="wn">03</span>
         <span class="wtitle">Building for <span class="hand">climate resilience</span></span>
-        <span class="wpub">for Womena</span>
+        <span class="wpub"><img src="logos/womena.png" alt="Womena"></span>
         <span class="warr">→</span>
       </a>
       <a class="writing-item" href="#">
         <span class="wn">04</span>
         <span class="wtitle">Boutique firms <span class="hand">lead the way</span></span>
-        <span class="wpub">for Dubai Design Week</span>
+        <span class="wpub"><img src="logos/dubai-design-week.png" alt="Dubai Design Week"></span>
         <span class="warr">→</span>
       </a>
     </div>
@@ -1532,21 +1582,6 @@
       </div>
     </div>
 
-    <div class="section-label" style="border-top: 1px solid var(--ink); padding-top: 16px; margin-bottom: 0;">Selected Clients</div>
-    <div class="clients-grid" style="margin-top: 32px;">
-      <div class="client">Nike</div>
-      <div class="client"><span class="hand">Diesel</span></div>
-      <div class="client">Pinko</div>
-      <div class="client"><span class="hand">Womena</span></div>
-      <div class="client">Dazed MENA</div>
-      <div class="client"><span class="hand">Dubai Design Week</span></div>
-      <div class="client">SoleDXB</div>
-      <div class="client"><span class="hand">Art Dubai Group</span></div>
-      <div class="client">Villa 88</div>
-      <div class="client"><span class="hand">Cindy Chao</span></div>
-      <div class="client">Firdaus Orchestra</div>
-      <div class="client"><span class="hand">+ many more</span></div>
-    </div>
   </div>
 </section>
 
