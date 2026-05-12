@@ -575,8 +575,126 @@
     text-transform: none; display: inline-block; transform: rotate(-2deg);
   }
 
-  image-slot { background: #f1f1f1; }
-  image-slot[data-has-image="true"] { background: transparent; }
+  /* ---- SKILLS TAGLINE ---- */
+  .skills-line {
+    margin-top: 32px;
+    font-family: var(--display);
+    font-size: clamp(13px, 1.2vw, 16px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .skills-line .sep { color: var(--accent); margin: 0 10px; }
+
+  /* ---- PROJECT CARDS (documentary sub-items) ---- */
+  .proj-role {
+    font-family: var(--hand); font-weight: 600;
+    font-size: 18px; color: var(--accent);
+    margin: 10px 0 8px; display: block;
+  }
+  .proj-desc {
+    font-family: var(--display);
+    font-size: clamp(14px, 1.3vw, 17px);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .proj-tags {
+    margin-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .proj-tag {
+    font-family: var(--display);
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+  }
+
+  /* ---- EDITORIAL THINKING ---- */
+  .editorial-body { max-width: 820px; margin-bottom: 64px; }
+  .editorial-body p {
+    font-family: var(--display);
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .editorial-body p .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+    display: inline-block;
+  }
+  .approach-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0 64px;
+    border-top: 1px solid var(--ink); padding-top: 40px;
+  }
+  .approach-item {
+    font-family: var(--display);
+    font-size: clamp(15px, 1.4vw, 19px);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--ink-2);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .approach-item::before {
+    content: '—';
+    font-family: var(--hand); color: var(--accent);
+    font-size: 1.4em; flex-shrink: 0;
+  }
+
+  /* ---- LEADERSHIP & CONSULTING ---- */
+  .lead-intro, .consult-intro {
+    max-width: 820px; margin-bottom: 56px;
+  }
+  .lead-intro p, .consult-intro p {
+    font-family: var(--display);
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin: 0 0 16px; color: var(--ink);
+  }
+  .lead-intro p .hand, .consult-intro p .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+  }
+  .cap-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 48px; border-top: 1px solid var(--ink); padding-top: 40px;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px; border-top: 1px solid var(--ink); padding-top: 40px;
+  }
+  .cap-group-title {
+    font-family: var(--display); font-size: 13px;
+    letter-spacing: 0.18em; color: var(--ink-3);
+    text-transform: uppercase; margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--ink);
+  }
+  .cap-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+  }
+  .cap-list li {
+    font-family: var(--display);
+    font-size: clamp(15px, 1.4vw, 19px);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 12px 0; border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  @media (max-width: 900px) {
+    .cap-grid, .services-grid { grid-template-columns: 1fr; gap: 32px; }
+    .approach-grid { grid-template-columns: 1fr; }
+  }
 
   @media (max-width: 900px) {
     .hero-grid, .about-text, .doc-detail, .events-feature, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -598,10 +716,11 @@
   <nav class="nav">
     <a href="#about">About</a>
     <a href="#documentary">Documentary</a>
-    <a href="#podcast">Podcast</a>
     <a href="#writing">Writing</a>
     <a href="#events">Events</a>
     <a href="#campaigns">Campaigns</a>
+    <a href="#editorial">Thinking</a>
+    <a href="#leadership">Leadership</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -630,11 +749,14 @@
 <section class="section" id="about">
   <div class="section-head">
     <div class="section-label">About</div>
-    <h2 class="section-title" style="font-size: 53px">A writer, producer &amp; <span class="hand">director</span> working at the intersection of culture, identity &amp; storytelling.</h2>
+    <h2 class="section-title" style="font-size: 53px">Creative producer, director &amp; <span class="hand">editorial strategist</span>.</h2>
   </div>
   <div class="section-body">
     <div class="about-text">
-      <p>Background in digital media, a philosophy degree, and nearly a decade of producing <span class="hand">stories that matter</span>. My work centers the stories of women and communities rarely given the space to be seen on their <span class="hand">own terms</span>.</p>
+      <p>Working across film, digital media, and culture — building <span class="hand">narrative-driven</span> work from concept to execution, with a focus on stories rooted in identity, politics, and human experience.</p>
+      <div class="skills-line">
+        Creative Production<span class="sep">•</span>Directing<span class="sep">•</span>Editorial Development<span class="sep">•</span>Narrative Strategy
+      </div>
     </div>
   </div>
 </section>
@@ -754,7 +876,14 @@
   <div class="section-body">
     <div class="doc-intro">
       <h3><span class="hand">Everything</span><br>Has Changed</h3>
+      <span class="proj-role">Creative Producer / Director</span>
       <p>An ongoing docu-series that travels from city to city to highlight the different ways in which our lives have changed drastically over the last decade, the realities we continue to carry with us and the new narratives we can <span class="hand">learn to adopt</span>.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Creative Development</span>
+        <span class="proj-tag">Direction</span>
+        <span class="proj-tag">Editorial Strategy</span>
+        <span class="proj-tag">Production Management</span>
+      </div>
     </div>
 
     <div class="yt-grid">
@@ -797,18 +926,38 @@
         <image-slot id="A-doc-firdaus" placeholder="Firdaus Orchestra still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div style="margin-top: 16px;">
           <div class="work-title">Firdaus Orchestra</div>
+          <span class="proj-role">Producer / Director</span>
+          <p class="proj-desc">A documentary portrait of the world's first orchestra composed entirely of women refugees — exploring music, identity, and belonging across borders.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Direction</span>
+            <span class="proj-tag">Research</span>
+            <span class="proj-tag">Editorial Strategy</span>
+          </div>
         </div>
       </div>
       <div>
         <image-slot id="A-doc-freedom" placeholder="Freedom By Design still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div style="margin-top: 16px;">
           <div class="work-title"><span class="hand">Freedom</span> By Design</div>
+          <span class="proj-role">Executive Producer / Creative Direction</span>
+          <p class="proj-desc">A multi-format film project exploring the stories of women across the MENA region through archive, testimony, and visual storytelling. Led creative development, narrative structure, and editorial direction throughout.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Creative Development</span>
+            <span class="proj-tag">Script Development</span>
+            <span class="proj-tag">Production Oversight</span>
+          </div>
         </div>
       </div>
       <div>
         <image-slot id="A-doc-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div style="margin-top: 16px;">
           <div class="work-title">May Calamawy</div>
+          <span class="proj-role">Producer / Editorial Lead</span>
+          <p class="proj-desc">A long-form profile and documentary feature on the actress and her work — examining representation, identity, and storytelling in contemporary Arab cinema.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Editorial Development</span>
+            <span class="proj-tag">Production Management</span>
+          </div>
         </div>
       </div>
     </div>
@@ -947,6 +1096,111 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- EDITORIAL THINKING -->
+<section class="section" id="editorial">
+  <div class="section-head">
+    <div class="section-label">Editorial Thinking</div>
+    <h2 class="section-title">How I think about <span class="hand">stories</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="editorial-body">
+      <p>I'm interested in stories that sit at the intersection of culture, identity, politics, and <span class="hand">emotional truth</span>. My work is rooted in research-driven storytelling and editorial clarity — balancing strong creative direction with narratives that feel human, nuanced, and culturally grounded.</p>
+      <p>Whether developing a film, branded project, podcast, or editorial series, I approach storytelling as both a creative and structural process: shaping not just visuals, but perspective, tone, pacing, and <span class="hand">emotional resonance</span>.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-item">Narrative-led creative development</div>
+      <div class="approach-item">Research-driven storytelling</div>
+      <div class="approach-item">Editorial world-building</div>
+      <div class="approach-item">Cross-platform storytelling</div>
+      <div class="approach-item">Audience and cultural insight</div>
+      <div class="approach-item">Longform and shortform narrative structuring</div>
+      <div class="approach-item">Story editing and script shaping</div>
+      <div class="approach-item">Tone and voice development</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section" id="leadership">
+  <div class="section-head">
+    <div class="section-label">Leadership</div>
+    <h2 class="section-title">Leading vision <span class="hand">&amp; delivery</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="lead-intro">
+      <p>Experienced leading productions from development through delivery across film, digital, editorial, and branded content. Comfortable operating across both creative and operational leadership — managing teams, shaping narrative direction, overseeing production workflows, and guiding projects through <span class="hand">post-production</span> and final delivery.</p>
+    </div>
+    <div class="cap-grid">
+      <div>
+        <div class="cap-group-title">Leadership &amp; Production</div>
+        <ul class="cap-list">
+          <li>Leading cross-functional creative teams</li>
+          <li>Production oversight and delivery</li>
+          <li>Creative development and concept shaping</li>
+          <li>Talent and crew management</li>
+          <li>Shoot supervision</li>
+          <li>Budget-conscious creative execution</li>
+        </ul>
+      </div>
+      <div>
+        <div class="cap-group-title">Editorial &amp; Narrative</div>
+        <ul class="cap-list">
+          <li>Story development</li>
+          <li>Editorial direction</li>
+          <li>Script and narrative structuring</li>
+          <li>Story editing</li>
+          <li>Tone and voice development</li>
+          <li>Post-production supervision</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTING -->
+<section class="section" id="consulting">
+  <div class="section-head">
+    <div class="section-label">Consulting</div>
+    <h2 class="section-title">Narrative &amp; creative <span class="hand">consulting</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="consult-intro">
+      <p>I work with brands, platforms, and creative teams on narrative development, editorial strategy, and <span class="hand">culturally grounded</span> storytelling. My consulting work focuses on helping projects strengthen clarity, emotional resonance, and audience connection from early development through execution.</p>
+    </div>
+    <div class="services-grid">
+      <div>
+        <div class="cap-group-title">Narrative &amp; Editorial</div>
+        <ul class="cap-list">
+          <li>Story development</li>
+          <li>Editorial refinement</li>
+          <li>Script feedback</li>
+          <li>Narrative structuring</li>
+          <li>Story world development</li>
+        </ul>
+      </div>
+      <div>
+        <div class="cap-group-title">Creative Strategy</div>
+        <ul class="cap-list">
+          <li>Creative direction</li>
+          <li>Content development</li>
+          <li>Cultural and audience insight</li>
+          <li>Research-driven storytelling</li>
+          <li>Format and platform strategy</li>
+        </ul>
+      </div>
+      <div>
+        <div class="cap-group-title">Production &amp; Development</div>
+        <ul class="cap-list">
+          <li>Development consulting</li>
+          <li>Creative production systems</li>
+          <li>Post-production feedback</li>
+          <li>Creative team alignment</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
