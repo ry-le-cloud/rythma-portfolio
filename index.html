@@ -6,7 +6,7 @@
 <title>Rythma Ekanayake — Creative Producer, Director, Writer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 /**
  * <image-slot> — user-fillable image placeholder.
@@ -722,18 +722,18 @@
     vertical-align: middle; margin-left: 0.1em;
   }
   .hero-meta { padding-bottom: 16px; }
-  .roles {
-    display: flex; flex-direction: column; gap: 4px;
+  .hero-tagline {
     font-family: var(--display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    line-height: 1.05;
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.15;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    max-width: 28ch;
   }
-  .roles span { display: block; }
-  .roles .hand {
+  .hero-tagline .hand {
     font-family: var(--hand); font-weight: 600; color: var(--accent);
-    font-size: 1.15em; letter-spacing: 0;
+    font-size: 1.1em; letter-spacing: 0;
     text-transform: none;
     display: inline-block; transform: rotate(-2deg);
   }
@@ -777,13 +777,15 @@
   }
   .about-text p {
     font-family: var(--display);
-    font-size: clamp(22px, 2.2vw, 30px);
-    line-height: 1.25;
-    margin: 0;
+    font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.5;
+    margin: 0 0 18px;
     color: var(--ink);
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.01em;
   }
+  .about-text p:last-child { margin-bottom: 0; }
   .about-text .hand {
     font-family: var(--hand); font-weight: 600;
     color: var(--accent);
@@ -1452,12 +1454,7 @@
       </h1>
     </div>
     <div class="hero-meta">
-      <div class="roles">
-        <span>Creative <span class="hand">producer</span></span>
-        <span>Director</span>
-        <span><span class="hand">Writer</span></span>
-        <span>Events Curator</span>
-      </div>
+      <div class="hero-tagline">Creative Producer, Director &amp; <span class="hand">Editorial Strategist</span></div>
     </div>
   </div>
 </section>
@@ -1466,7 +1463,6 @@
 <section class="section" id="about">
   <div class="section-head">
     <div class="section-label">About</div>
-    <h2 class="section-title" style="font-size: 53px">Creative Producer, Director &amp; <span class="hand">Editorial Strategist</span>.</h2>
   </div>
   <div class="section-body">
     <div class="about-text">
@@ -1550,7 +1546,7 @@
 <section class="section" id="formats">
   <div class="section-head">
     <div class="section-label"></div>
-    <h2 class="section-title">Five ways the work <span class="hand">shows up</span>.</h2>
+    <h2 class="section-title">Selected <span class="hand">Works</span>.</h2>
   </div>
   <div class="section-body">
     <div class="formats-list">
@@ -1632,7 +1628,7 @@
       </a>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px;">
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 96px;">
       <div>
         <image-slot id="A-doc-firdaus" placeholder="Firdaus Orchestra still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
         <div style="margin-top: 16px;">
@@ -1656,18 +1652,6 @@
             <span class="proj-tag">Creative Development</span>
             <span class="proj-tag">Script Development</span>
             <span class="proj-tag">Production Oversight</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <image-slot id="A-doc-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 3/4;"></image-slot>
-        <div style="margin-top: 16px;">
-          <div class="work-title">May Calamawy</div>
-          <span class="proj-role">Producer / Editorial Lead</span>
-          <p class="proj-desc">A long-form profile and documentary feature on the actress and her work — examining representation, identity, and storytelling in contemporary Arab cinema.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Editorial Development</span>
-            <span class="proj-tag">Production Management</span>
           </div>
         </div>
       </div>
