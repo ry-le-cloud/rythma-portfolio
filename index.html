@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rythma Ekanayake — Three Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --ink: #111;
+    --ink-2: #666;
+    --ink-3: #aaa;
+    --rule: #e1ddd3;
+    --accent: #1429ff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background: var(--bg); color: var(--ink); font-family: 'Geist', sans-serif; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { min-height: 100vh; padding: 48px 32px; display: flex; flex-direction: column; }
+  header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 48px;
+    font-family: 'Geist Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-2);
+  }
+  header b { font-family: 'Geist Mono', monospace; font-weight: 500; color: var(--ink); }
+
+  .lede {
+    max-width: 880px; margin-bottom: 56px;
+  }
+  h1 {
+    font-family: 'Instrument Serif', serif; font-weight: 400;
+    font-size: clamp(56px, 8vw, 120px); line-height: 0.95;
+    margin: 0 0 24px; letter-spacing: -0.02em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede p {
+    font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1.4;
+    color: var(--ink-2); margin: 0; max-width: 60ch;
+  }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    flex: 1;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+
+  .preview {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    background: #fafaf6;
+    border-bottom: 1px solid var(--rule);
+  }
+  .preview iframe {
+    width: 200%; height: 200%;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    border: 0;
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute; top: 12px; left: 12px;
+    font-family: 'Geist Mono', monospace; font-size: 10px;
+    background: rgba(0,0,0,0.85); color: #fff;
+    padding: 4px 8px; border-radius: 4px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .corner.b { background: #ff2a1f; }
+  .corner.c { background: #e84a1c; }
+
+  .info { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .info .label {
+    font-family: 'Geist Mono', monospace; font-size: 10px;
+    color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .info h3 {
+    font-family: 'Instrument Serif', serif; font-weight: 400;
+    font-size: 36px; line-height: 1; margin: 0 0 12px; letter-spacing: -0.01em;
+  }
+  .info h3 em { font-style: italic; }
+  .info .desc { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin: 0 0 20px; }
+  .info ul { list-style: none; padding: 0; margin: 0 0 24px; }
+  .info li {
+    font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--ink-2);
+    padding: 6px 0; border-top: 1px dashed var(--rule);
+    display: flex; justify-content: space-between;
+  }
+  .info li:first-child { border-top: none; }
+  .info li b { color: var(--ink); font-weight: 500; }
+  .info .open {
+    margin-top: auto;
+    display: inline-flex; justify-content: space-between; align-items: center;
+    background: var(--ink); color: var(--bg);
+    padding: 14px 18px;
+    font-family: 'Geist Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    transition: background .2s;
+  }
+  .info .open:hover { background: var(--accent); }
+  .card.B .info .open:hover { background: #ff2a1f; }
+  .card.C .info .open:hover { background: #e84a1c; }
+
+  footer {
+    margin-top: 48px;
+    font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--ink-3);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span><b>Rythma Ekanayake</b> · Portfolio · 2026</span>
+  <span>Three directions · Pick one →</span>
+</header>
+
+<div class="lede">
+  <h1>Three directions for your <em>portfolio</em>.</h1>
+  <p>White background. Long-scroll. Anchor nav. Selected works show role beside title. All three contain the same content — same projects, same writing, same clients — but they speak in different voices. Open any of them to scroll the full thing. Image placeholders are drag-and-drop; we can fill them once you've picked a direction.</p>
+</div>
+
+<div class="grid">
+
+  <a class="card A" href="A - Editorial.html">
+    <div class="preview">
+      <span class="corner">A · Editorial</span>
+      <iframe src="A - Editorial.html" loading="lazy" scrolling="no"></iframe>
+    </div>
+    <div class="info">
+      <div class="label">Direction A</div>
+      <h3><em>Editorial</em></h3>
+      <p class="desc">Image-led grid with serif display type, mono labels, and an electric-blue accent. Closest to cremedelacairo — clean, quiet, magazine-restrained.</p>
+      <ul>
+        <li><span>Type</span><b>Instrument Serif / Geist</b></li>
+        <li><span>Accent</span><b>Electric blue</b></li>
+        <li><span>Vibe</span><b>Restrained · editorial</b></li>
+        <li><span>Best for</span><b>Image-forward storytelling</b></li>
+      </ul>
+      <span class="open"><span>Open Direction A</span><span>→</span></span>
+    </div>
+  </a>
+
+  <a class="card B" href="B - Index.html">
+    <div class="preview">
+      <span class="corner b">B · Index</span>
+      <iframe src="B - Index.html" loading="lazy" scrolling="no"></iframe>
+    </div>
+    <div class="info">
+      <div class="label">Direction B</div>
+      <h3>Index <em>(playful)</em></h3>
+      <p class="desc">Bold sans, handwritten Caveat accents, hot red highlight. Works are a hover-list: as you hover, a preview floats by the cursor. Closer to allysue in spirit — friendly and personal — but with stricter type.</p>
+      <ul>
+        <li><span>Type</span><b>Archivo · Caveat hand</b></li>
+        <li><span>Accent</span><b>Hot red</b></li>
+        <li><span>Vibe</span><b>Playful · personal</b></li>
+        <li><span>Best for</span><b>Personality, text-first</b></li>
+      </ul>
+      <span class="open"><span>Open Direction B</span><span>→</span></span>
+    </div>
+  </a>
+
+  <a class="card C" href="C - Studio.html">
+    <div class="preview">
+      <span class="corner c">C · Studio</span>
+      <iframe src="C - Studio.html" loading="lazy" scrolling="no"></iframe>
+    </div>
+    <div class="info">
+      <div class="label">Direction C</div>
+      <h3>Studio <em>magazine</em></h3>
+      <p class="desc">Mono-led masthead with thin rules, Fraunces serif for display, warm off-white paper. Reads like a printed publication — strong information architecture, asymmetric grid.</p>
+      <ul>
+        <li><span>Type</span><b>Fraunces · Space Mono</b></li>
+        <li><span>Accent</span><b>Burnt orange-red</b></li>
+        <li><span>Vibe</span><b>Editorial · journalistic</b></li>
+        <li><span>Best for</span><b>Writing-led identity</b></li>
+      </ul>
+      <span class="open"><span>Open Direction C</span><span>→</span></span>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <span>Drop images into any placeholder · they persist locally</span>
+  <span>Comment on what you like / want to mix · we can blend directions</span>
+</footer>
+
+</div>
+</body>
+</html>

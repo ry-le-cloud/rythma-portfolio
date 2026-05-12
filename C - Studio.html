@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rythma Ekanayake — Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Space+Mono:wght@400;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    --bg: #fdfcf9;
+    --ink: #141414;
+    --ink-2: #5a5a5a;
+    --ink-3: #a5a39d;
+    --rule: #1a1a1a;
+    --rule-soft: #e6e3dc;
+    --accent: #e84a1c; /* orange-red */
+    --serif: 'Fraunces', 'Times New Roman', serif;
+    --sans: 'Inter Tight', system-ui, sans-serif;
+    --mono: 'Space Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background: var(--bg); color: var(--ink); }
+  body { font-family: var(--sans); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Bar */
+  .bar { position: fixed; top: 0; left:0; right:0; z-index: 50; background: var(--bg);
+    border-bottom: 1px solid var(--rule); display: flex; }
+  .bar > * { padding: 12px 18px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; border-right: 1px solid var(--rule); }
+  .bar > *:last-child { border-right: none; margin-left: auto; }
+  .bar .brand { font-weight: 700; }
+  .bar nav { display: flex; gap: 0; padding: 0; border: none; }
+  .bar nav a { padding: 12px 14px; border-right: 1px solid var(--rule-soft); transition: background .2s; color: var(--ink-2); }
+  .bar nav a:hover { background: var(--ink); color: var(--bg); }
+  .bar .date { color: var(--ink-2); }
+  @media (max-width: 900px) { .bar nav { display: none; } }
+
+  /* Masthead */
+  .mast { padding: 90px 0 0; border-bottom: 1px solid var(--rule); }
+  .mast-top {
+    display: grid; grid-template-columns: 80px 1fr 80px;
+    border-bottom: 1px solid var(--rule); align-items: center;
+  }
+  .mast-top > div { padding: 14px 18px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); }
+  .mast-top > div:nth-child(2) { text-align: center; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+  .mast-title { padding: 24px 18px 8px; text-align: center; }
+  .mast-title h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(70px, 14vw, 220px);
+    line-height: 0.88; margin: 0; letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+  .mast-title h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .mast-sub {
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 24px;
+  }
+  .mast-sub > div { padding: 16px 18px; border-right: 1px solid var(--rule-soft); }
+  .mast-sub > div:last-child { border-right: none; }
+  .mast-sub .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .mast-sub .val { font-family: var(--serif); font-size: 22px; margin-top: 6px; font-weight: 400; }
+  .mast-sub .val em { font-style: italic; color: var(--accent); }
+  @media (max-width: 900px) { .mast-sub { grid-template-columns: 1fr 1fr; } .mast-sub > div { border-bottom: 1px solid var(--rule-soft); } }
+
+  /* About strip */
+  .about-strip { padding: 56px 18px; border-bottom: 1px solid var(--rule); }
+  .about-inner { display: grid; grid-template-columns: 120px 1fr 1fr; gap: 32px; max-width: 1400px; margin: 0 auto; }
+  .col-label { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; padding-top: 6px; }
+  .lede { font-family: var(--serif); font-size: 28px; line-height: 1.25; margin: 0 0 16px; font-weight: 400; }
+  .lede em { font-style: italic; color: var(--accent); }
+  .lede-small { font-size: 14px; color: var(--ink-2); margin: 0 0 12px; line-height: 1.6; }
+  @media (max-width: 900px) { .about-inner { grid-template-columns: 1fr; gap: 16px; } }
+
+  /* Section base */
+  .sec { border-bottom: 1px solid var(--rule); }
+  .sec-head {
+    display: grid; grid-template-columns: 120px 1fr 120px;
+    border-bottom: 1px solid var(--rule);
+    align-items: stretch;
+  }
+  .sec-head > div { padding: 20px 18px; }
+  .sec-head > div:nth-child(2) { border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+  .sec-head .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .sec-head h2 {
+    font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); line-height: 1; margin: 0; font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+  .sec-head h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .sec-head .right { font-family: var(--mono); font-size: 10px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; text-align: right; }
+  @media (max-width: 900px) { .sec-head { grid-template-columns: 1fr; } .sec-head > div { border-left: none !important; border-right: none !important; border-bottom: 1px solid var(--rule-soft); } }
+
+  /* Works grid */
+  .works { padding: 32px 18px; max-width: 1400px; margin: 0 auto; }
+  .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .w-12 { grid-column: span 12; } .w-8 { grid-column: span 8; } .w-7 { grid-column: span 7; }
+  .w-6 { grid-column: span 6; } .w-5 { grid-column: span 5; } .w-4 { grid-column: span 4; } .w-3 { grid-column: span 3; }
+  @media (max-width: 900px) { .grid-12 > * { grid-column: span 12 !important; } }
+
+  .work { display: block; }
+  .work .slot { width: 100%; background: #ece9e2; }
+  .work .meta { padding-top: 10px; border-top: 1px solid var(--rule-soft); margin-top: 12px;
+    display: grid; grid-template-columns: 24px 1fr auto; gap: 12px; align-items: baseline; }
+  .work .meta .n { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .work .title { font-family: var(--serif); font-size: 22px; line-height: 1.1; font-weight: 400; transition: color .2s; }
+  .work .title em { font-style: italic; }
+  .work:hover .title { color: var(--accent); }
+  .work .role { font-family: var(--mono); font-size: 10px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  .work .sub { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+  /* Format index */
+  .fmt-index { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .fmt {
+    padding: 32px 18px; border-right: 1px solid var(--rule-soft);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 280px;
+    transition: background .2s, color .2s;
+    cursor: pointer;
+  }
+  .fmt:last-child { border-right: none; }
+  .fmt:hover { background: var(--ink); color: var(--bg); }
+  .fmt:hover .fmt-arrow, .fmt:hover .fmt-num, .fmt:hover .fmt-desc { color: var(--bg); }
+  .fmt.accent { background: var(--accent); color: #fff; }
+  .fmt.accent .fmt-num, .fmt.accent .fmt-desc, .fmt.accent .fmt-arrow { color: rgba(255,255,255,0.85); }
+  .fmt.accent:hover { background: var(--ink); }
+  .fmt-num { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .fmt-title { font-family: var(--serif); font-size: 40px; line-height: 0.95; margin-top: 16px; font-weight: 300; }
+  .fmt-title em { font-style: italic; }
+  .fmt-desc { font-size: 12px; color: var(--ink-2); margin-top: 16px; }
+  .fmt-arrow { font-family: var(--mono); font-size: 18px; color: var(--ink-3); align-self: flex-end; }
+  @media (max-width: 900px) { .fmt-index { grid-template-columns: 1fr 1fr; } .fmt { border-bottom: 1px solid var(--rule-soft); } }
+
+  /* Documentary feature */
+  .feat { padding: 48px 18px; max-width: 1400px; margin: 0 auto; }
+  .feat-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 900px) { .feat-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .feat h3 { font-family: var(--serif); font-size: 56px; line-height: 0.95; margin: 0 0 18px; font-weight: 300; letter-spacing: -0.015em; }
+  .feat h3 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .feat .lead { font-size: 16px; line-height: 1.6; color: var(--ink-2); margin: 0 0 14px; max-width: 50ch; }
+  .feat .tag { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .seasons { margin-top: 28px; border-top: 1px solid var(--rule); }
+  .season { display: grid; grid-template-columns: 60px 1fr 80px; gap: 16px; align-items: baseline;
+    padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
+  .season .sn { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .season .st { font-family: var(--serif); font-size: 22px; }
+  .season .st em { font-style: italic; }
+  .season .sy { font-family: var(--mono); font-size: 10px; color: var(--ink-2); text-align: right; }
+
+  /* Podcast & cards */
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 32px 18px; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 900px) { .cards-3 { grid-template-columns: 1fr 1fr; } }
+  .card .slot { width: 100%; background: #ece9e2; }
+  .card .meta-2 { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
+  .card .ct { font-family: var(--serif); font-size: 22px; font-weight: 400; }
+  .card .ct em { font-style: italic; }
+  .card .cm { font-family: var(--mono); font-size: 10px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+  .card:hover .ct { color: var(--accent); }
+  .card .ct { transition: color .2s; }
+
+  /* Writing list */
+  .writing { padding: 32px 18px; max-width: 1400px; margin: 0 auto; }
+  .write-lede { font-family: var(--serif); font-size: 24px; line-height: 1.3; max-width: 50ch; margin: 0 0 32px; font-weight: 400; color: var(--ink-2); }
+  .write-lede em { font-style: italic; color: var(--accent); }
+  .write-row {
+    display: grid; grid-template-columns: 50px 1fr 200px 100px 60px;
+    gap: 16px; align-items: baseline;
+    padding: 20px 0; border-top: 1px solid var(--rule-soft);
+    transition: padding .2s;
+  }
+  .write-row:first-child { border-top: 1px solid var(--rule); }
+  .write-row:last-child { border-bottom: 1px solid var(--rule); }
+  .write-row:hover { padding-left: 12px; }
+  .write-row:hover .wt { color: var(--accent); }
+  .write-row .wn { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .write-row .wt { font-family: var(--serif); font-size: 24px; line-height: 1.15; transition: color .2s; }
+  .write-row .wt em { font-style: italic; }
+  .write-row .wp, .write-row .wk { font-family: var(--mono); font-size: 10px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
+  .write-row .wk { color: var(--accent); }
+  .write-row .wa { font-family: var(--mono); font-size: 14px; text-align: right; color: var(--ink-3); }
+  @media (max-width: 900px) {
+    .write-row { grid-template-columns: 30px 1fr 30px; gap: 12px; }
+    .write-row .wp, .write-row .wk { display: none; }
+  }
+
+  /* Events */
+  .evt-feature { padding: 48px 18px; max-width: 1400px; margin: 0 auto; }
+  .evt-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .evt-tag { border: 1px solid var(--rule); padding: 6px 12px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .evt-tag.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Clients ticker grid */
+  .clients-bar {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid var(--rule);
+  }
+  .cl {
+    padding: 32px 16px; border-right: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft);
+    text-align: center; font-family: var(--serif); font-size: 22px; font-weight: 400;
+    transition: background .2s, color .2s;
+  }
+  .cl:nth-child(6n) { border-right: none; }
+  .cl:hover { background: var(--accent); color: #fff; }
+  .cl em { font-style: italic; }
+  @media (max-width: 900px) { .clients-bar { grid-template-columns: 1fr 1fr; } .cl { border-right: 1px solid var(--rule-soft); } .cl:nth-child(2n) { border-right: none; } }
+
+  /* Contact */
+  .contact-sec { padding: 96px 18px; }
+  .contact-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 120px 1fr; gap: 32px; }
+  .contact-inner h2 { font-family: var(--serif); font-size: clamp(72px, 12vw, 200px); line-height: 0.88; margin: 0 0 32px; font-weight: 300; letter-spacing: -0.02em; }
+  .contact-inner h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .contact-rows { border-top: 1px solid var(--rule); }
+  .contact-row {
+    display: grid; grid-template-columns: 100px 1fr 100px;
+    gap: 24px; align-items: baseline;
+    padding: 20px 0; border-bottom: 1px solid var(--rule-soft);
+    transition: padding .2s;
+  }
+  .contact-row:hover { padding-left: 12px; }
+  .contact-row:hover .cv { color: var(--accent); }
+  .contact-row .cl-lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .contact-row .cv { font-family: var(--serif); font-size: 32px; transition: color .2s; }
+  .contact-row .ca { font-family: var(--mono); font-size: 12px; text-align: right; color: var(--ink-3); }
+  @media (max-width: 900px) { .contact-inner { grid-template-columns: 1fr; } .contact-row { grid-template-columns: 1fr 40px; } .contact-row .cl-lbl { display: none; } .contact-row .cv { font-size: 22px; } }
+
+  footer { padding: 18px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; border-top: 1px solid var(--rule); }
+
+  image-slot { background: #ece9e2; display: block; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">RE / Portfolio</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#documentary">Doc</a>
+    <a href="#podcast">Podcast</a>
+    <a href="#writing">Writing</a>
+    <a href="#events">Events</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="date">MMXXVI · Dubai</div>
+</div>
+
+<!-- MASTHEAD -->
+<section class="mast" id="top">
+  <div class="mast-top">
+    <div>Vol. 09</div>
+    <div>The Portfolio of Rythma Ekanayake — Creative Producer, Director, Writer &amp; Events Curator</div>
+    <div style="text-align: right;">2016 — 2026</div>
+  </div>
+  <div class="mast-title">
+    <h1>Rythma <em>Ekanayake</em></h1>
+  </div>
+  <div class="mast-sub">
+    <div><div class="lbl">01 / Role</div><div class="val">Creative Producer</div></div>
+    <div><div class="lbl">02 / Role</div><div class="val"><em>Director</em></div></div>
+    <div><div class="lbl">03 / Role</div><div class="val">Writer</div></div>
+    <div><div class="lbl">04 / Role</div><div class="val"><em>Events Curator</em></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="col-label">↳ ABOUT</div>
+    <div>
+      <p class="lede">A writer, creative producer and director working at the intersection of <em>culture, identity</em> and storytelling across the MENA region and its diaspora.</p>
+    </div>
+    <div>
+      <p class="lede-small">A background in digital media, a philosophy degree, and nearly a decade of producing stories that amplify underrepresented voices.</p>
+      <p class="lede-small">I lead and produce projects that foreground the stories of women and communities that rarely get to be seen on their own terms — long-form documentary, multi-platform content across social, editorial, branded, and experiential formats.</p>
+      <p class="lede-small" style="color: var(--ink-3); font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 16px;">↳ Available May 2026 onwards</p>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="sec" id="work">
+  <div class="sec-head">
+    <div class="lbl">↳ §02 / SELECTED WORK</div>
+    <div><h2>A small <em>index</em> of recent work.</h2></div>
+    <div class="right">2020 — 2026<br>10 entries</div>
+  </div>
+  <div class="works">
+    <div class="grid-12">
+      <a class="work w-7" href="#documentary">
+        <image-slot id="C-w-everything" placeholder="Everything Has Changed — still" style="width:100%; aspect-ratio: 16/10;"></image-slot>
+        <div class="meta">
+          <span class="n">N°01</span>
+          <div><div class="title"><em>Everything Has Changed</em></div><div class="sub">Docu-series · 3 seasons · 2022–25</div></div>
+          <span class="role">Director</span>
+        </div>
+      </a>
+      <a class="work w-5" href="#campaigns">
+        <image-slot id="C-w-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+        <div class="meta">
+          <span class="n">N°02</span>
+          <div><div class="title">May Calamawy</div><div class="sub">Long-form feature · Womena</div></div>
+          <span class="role">Producer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#events">
+        <image-slot id="C-w-womena" placeholder="A World of Womena" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="meta">
+          <span class="n">N°03</span>
+          <div><div class="title">A World of <em>Womena</em></div><div class="sub">Immersive · DDW '24</div></div>
+          <span class="role">Curator</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#documentary">
+        <image-slot id="C-w-firdaus" placeholder="Firdaus Orchestra" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="meta">
+          <span class="n">N°04</span>
+          <div><div class="title">Firdaus Orchestra</div><div class="sub">Short documentary</div></div>
+          <span class="role">Producer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#documentary">
+        <image-slot id="C-w-freedom" placeholder="Freedom By Design" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="meta">
+          <span class="n">N°05</span>
+          <div><div class="title"><em>Freedom By Design</em></div><div class="sub">Short film</div></div>
+          <span class="role">Producer</span>
+        </div>
+      </a>
+      <a class="work w-8" href="#podcast">
+        <image-slot id="C-w-sage" placeholder="Sage Takes Thyme" style="width:100%; aspect-ratio: 16/9;"></image-slot>
+        <div class="meta">
+          <span class="n">N°06</span>
+          <div><div class="title">Sage Takes <em>Thyme</em></div><div class="sub">Podcast · audio production</div></div>
+          <span class="role">Producer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#writing">
+        <image-slot id="C-w-dazed" placeholder="Voices From The Brink" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+        <div class="meta">
+          <span class="n">N°07</span>
+          <div><div class="title">Voices From <em>The Brink</em></div><div class="sub">Dazed MENA · longform</div></div>
+          <span class="role">Writer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#campaigns">
+        <image-slot id="C-w-nike" placeholder="Nike × Womena — Nelly Attar" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <div class="meta">
+          <span class="n">N°08</span>
+          <div><div class="title">Nike × <em>Womena</em></div><div class="sub">Nelly Attar profile</div></div>
+          <span class="role">Writer · Producer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#campaigns">
+        <image-slot id="C-w-diesel" placeholder="Diesel" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <div class="meta">
+          <span class="n">N°09</span>
+          <div><div class="title">Diesel</div><div class="sub">Editorial campaign</div></div>
+          <span class="role">Producer</span>
+        </div>
+      </a>
+      <a class="work w-4" href="#events">
+        <image-slot id="C-w-soledxb" placeholder="SoleDXB" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <div class="meta">
+          <span class="n">N°10</span>
+          <div><div class="title">SoleDXB</div><div class="sub">Cultural festival</div></div>
+          <span class="role">Curator</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT INDEX -->
+<section class="sec" id="formats">
+  <div class="sec-head">
+    <div class="lbl">↳ §03 / FORMATS</div>
+    <div><h2>Five ways the work shows <em>up</em>.</h2></div>
+    <div class="right">F/01 – F/05</div>
+  </div>
+  <div class="fmt-index">
+    <a class="fmt accent" href="#documentary">
+      <div>
+        <div class="fmt-num">F/01</div>
+        <div class="fmt-title"><em>Documentary</em></div>
+        <div class="fmt-desc">Long-form direction &amp; story development.</div>
+      </div>
+      <div class="fmt-arrow">↗</div>
+    </a>
+    <a class="fmt" href="#podcast">
+      <div>
+        <div class="fmt-num">F/02</div>
+        <div class="fmt-title">Podcast</div>
+        <div class="fmt-desc">Audio production for cultural conversation.</div>
+      </div>
+      <div class="fmt-arrow">↗</div>
+    </a>
+    <a class="fmt" href="#writing">
+      <div>
+        <div class="fmt-num">F/03</div>
+        <div class="fmt-title"><em>Writing</em></div>
+        <div class="fmt-desc">Editorial features, essays &amp; criticism.</div>
+      </div>
+      <div class="fmt-arrow">↗</div>
+    </a>
+    <a class="fmt" href="#events">
+      <div>
+        <div class="fmt-num">F/04</div>
+        <div class="fmt-title">Events</div>
+        <div class="fmt-desc">Curation, installations &amp; live programming.</div>
+      </div>
+      <div class="fmt-arrow">↗</div>
+    </a>
+    <a class="fmt" href="#campaigns">
+      <div>
+        <div class="fmt-num">F/05</div>
+        <div class="fmt-title"><em>Campaigns</em></div>
+        <div class="fmt-desc">Creative direction for global &amp; regional brands.</div>
+      </div>
+      <div class="fmt-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- DOCUMENTARY -->
+<section class="sec" id="documentary">
+  <div class="sec-head">
+    <div class="lbl">↳ §04 / DOCUMENTARY</div>
+    <div><h2>Directing &amp; long-form <em>storytelling</em>.</h2></div>
+    <div class="right">Feature + 3 works</div>
+  </div>
+  <div class="feat">
+    <div class="feat-grid">
+      <image-slot id="C-doc-hero" placeholder="Everything Has Changed — hero" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+      <div>
+        <div class="tag">↳ Feature · Direction</div>
+        <h3 style="margin-top: 8px;"><em>Everything Has Changed</em></h3>
+        <p class="lead">An ongoing docu-series that travels city to city to highlight the different ways our lives have changed drastically over the last decade — the realities we continue to carry with us, and the new narratives we can learn to adopt.</p>
+        <p class="lead"><b style="color: var(--ink);">Conceptualised, interviewed, directed &amp; scripted by me.</b></p>
+
+        <div class="seasons">
+          <div class="season"><span class="sn">S/01</span><span class="st">The Return of <em>Diaspora</em></span><span class="sy">2022</span></div>
+          <div class="season"><span class="sn">S/02</span><span class="st"><em>Cairo's</em> Creative Community</span><span class="sy">2023</span></div>
+          <div class="season"><span class="sn">S/03</span><span class="st">The Sounds of Saudi Arabia</span><span class="sy">2024</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cards-3" style="border-top: 1px solid var(--rule-soft);">
+    <a class="card" href="#">
+      <image-slot id="C-doc-firdaus" placeholder="Firdaus Orchestra" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <div class="meta-2"><div class="ct">Firdaus Orchestra</div><div class="cm">Short doc · Producer</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-doc-freedom" placeholder="Freedom By Design" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <div class="meta-2"><div class="ct"><em>Freedom By Design</em></div><div class="cm">Short film · Producer</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-doc-may" placeholder="May Calamawy" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <div class="meta-2"><div class="ct">May Calamawy</div><div class="cm">Feature · Producer</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section class="sec" id="podcast">
+  <div class="sec-head">
+    <div class="lbl">↳ §05 / PODCAST</div>
+    <div><h2><em>Audio</em> production &amp; conversation.</h2></div>
+    <div class="right">3 works</div>
+  </div>
+  <div class="cards-3">
+    <a class="card" href="#">
+      <image-slot id="C-pod-sage" placeholder="Sage Takes Thyme" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+      <div class="meta-2"><div class="ct">Sage Takes <em>Thyme</em></div><div class="cm">Producer · Audio</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-pod-2" placeholder="Podcast cover" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+      <div class="meta-2"><div class="ct">Conversation series</div><div class="cm">Producer · Episodic</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-pod-3" placeholder="Podcast cover" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+      <div class="meta-2"><div class="ct"><em>Documentary audio</em></div><div class="cm">Producer · Feature</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="sec" id="writing">
+  <div class="sec-head">
+    <div class="lbl">↳ §06 / WRITING</div>
+    <div><h2>Words are the <em>first love</em>.</h2></div>
+    <div class="right">6 entries</div>
+  </div>
+  <div class="writing">
+    <p class="write-lede">"While my career has evolved past the written word, it will forever remain my <em>first love</em>. Through writing, I was able to tell important stories and tap into connection &amp; community."</p>
+
+    <a class="write-row" href="#"><span class="wn">W/01</span><span class="wt">Voices From <em>The Brink</em></span><span class="wp">Dazed MENA</span><span class="wk">Longform</span><span class="wa">→</span></a>
+    <a class="write-row" href="#"><span class="wn">W/02</span><span class="wt">Do women in the region need <em>feminism?</em></span><span class="wp">Dazed MENA</span><span class="wk">Essay</span><span class="wa">→</span></a>
+    <a class="write-row" href="#"><span class="wn">W/03</span><span class="wt">What does building for climate resilience mean for our region?</span><span class="wp">Dazed MENA</span><span class="wk">Essay</span><span class="wa">→</span></a>
+    <a class="write-row" href="#"><span class="wn">W/04</span><span class="wt">A profile on athlete <em>Nelly Attar</em></span><span class="wp">Nike × Womena</span><span class="wk">Commercial</span><span class="wa">→</span></a>
+    <a class="write-row" href="#"><span class="wn">W/05</span><span class="wt">Design with context: boutique firms lead the way</span><span class="wp">Editorial</span><span class="wk">Feature</span><span class="wa">→</span></a>
+    <a class="write-row" href="#"><span class="wn">W/06</span><span class="wt">Jewelled wonders: <em>Cindy Chao</em> for Villa 88</span><span class="wp">Art Dubai Group</span><span class="wk">Commercial</span><span class="wa">→</span></a>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="sec" id="events">
+  <div class="sec-head">
+    <div class="lbl">↳ §07 / EVENTS</div>
+    <div><h2>Cultural <em>events</em>, installations &amp; programming.</h2></div>
+    <div class="right">Feature + 3 works</div>
+  </div>
+  <div class="evt-feature">
+    <div class="feat-grid">
+      <image-slot id="C-evt-womena" placeholder="A World of Womena — installation" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <div>
+        <div class="tag">↳ Curation · DDW '24</div>
+        <h3 style="margin-top: 8px;">A World of <em>Womena</em></h3>
+        <p class="lead">A multi-sensory exhibition for Dubai Design Week 2024 transforming you into a world of Womena through storytelling, design, expression and audio-visual mediums.</p>
+        <p class="lead">Curated for Womena's 10-year anniversary as an impact-driven media platform — featuring narratives from <em style="color: var(--accent);">Life of Loofah</em>, <em style="color: var(--accent);">Kilma</em> and <em style="color: var(--accent);">Solenne Tadros</em>.</p>
+        <div class="evt-tags">
+          <span class="evt-tag accent">Curator</span>
+          <span class="evt-tag">Dubai Design Week 2024</span>
+          <span class="evt-tag">Immersive Installation</span>
+          <span class="evt-tag">Womena 10-Year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cards-3" style="border-top: 1px solid var(--rule-soft);">
+    <a class="card" href="#">
+      <image-slot id="C-evt-soledxb" placeholder="SoleDXB" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+      <div class="meta-2"><div class="ct">SoleDXB</div><div class="cm">Festival · Activation</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-evt-2" placeholder="Live programming" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+      <div class="meta-2"><div class="ct"><em>Live programming</em></div><div class="cm">Talks · Screenings</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-evt-3" placeholder="Community gatherings" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+      <div class="meta-2"><div class="ct">Community gatherings</div><div class="cm">Curation · Production</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section class="sec" id="campaigns">
+  <div class="sec-head">
+    <div class="lbl">↳ §08 / CAMPAIGNS</div>
+    <div><h2>Brands, <em>told well</em>.</h2></div>
+    <div class="right">500+ collaborators</div>
+  </div>
+  <div class="feat">
+    <p class="write-lede" style="max-width: 64ch;">Working closely with a network of <b style="color: var(--ink); font-style: normal;">500+ creatives, entrepreneurs, athletes &amp; healers</b> — shaping their stories into compelling, multi-platform content. Research → storyboarding → interviewing → scripting → production.</p>
+  </div>
+  <div class="cards-3">
+    <a class="card" href="#">
+      <image-slot id="C-camp-diesel" placeholder="Diesel" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+      <div class="meta-2"><div class="ct"><em>Diesel</em></div><div class="cm">Editorial · Production</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-camp-pinko" placeholder="Pinko" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+      <div class="meta-2"><div class="ct">Pinko</div><div class="cm">Editorial · Production</div></div>
+    </a>
+    <a class="card" href="#">
+      <image-slot id="C-camp-nike" placeholder="Nike × Womena" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+      <div class="meta-2"><div class="ct"><em>Nike</em> × Womena</div><div class="cm">Writer · Producer</div></div>
+    </a>
+  </div>
+  <div style="padding: 24px 18px 0; max-width: 1400px; margin: 0 auto;">
+    <div class="lbl" style="font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em;">↳ Selected clients</div>
+  </div>
+  <div class="clients-bar" style="margin-top: 16px;">
+    <div class="cl">Nike</div>
+    <div class="cl"><em>Diesel</em></div>
+    <div class="cl">Pinko</div>
+    <div class="cl"><em>Womena</em></div>
+    <div class="cl">Dazed MENA</div>
+    <div class="cl"><em>Dubai Design Week</em></div>
+    <div class="cl">SoleDXB</div>
+    <div class="cl"><em>Art Dubai Group</em></div>
+    <div class="cl">Villa 88</div>
+    <div class="cl"><em>Cindy Chao</em></div>
+    <div class="cl">Firdaus Orchestra</div>
+    <div class="cl"><em>+ many more</em></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="col-label">↳ §09 / CONTACT</div>
+    <div>
+      <h2>Let's work<br><em>together.</em></h2>
+      <div class="contact-rows">
+        <a class="contact-row" href="mailto:rythmale@gmail.com"><span class="cl-lbl">Email</span><span class="cv">rythmale@gmail.com</span><span class="ca">→ write</span></a>
+        <a class="contact-row" href="https://www.instagram.com/rythmae/" target="_blank" rel="noopener"><span class="cl-lbl">Instagram</span><span class="cv">@rythmae</span><span class="ca">→ follow</span></a>
+        <a class="contact-row" href="tel:+971561098629"><span class="cl-lbl">Phone</span><span class="cv">+971 56 109 8629</span><span class="ca">→ call</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© Rythma Ekanayake · MMXXVI</span>
+  <span>Dubai · MENA</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+</body>
+</html>
