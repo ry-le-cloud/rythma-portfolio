@@ -330,6 +330,32 @@
   }
   .pod-item:hover h4 { color: var(--accent); }
 
+  /* podcast feature */
+  .pod-feature {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start;
+  }
+  .pod-detail h3 {
+    font-family: var(--display);
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.95; margin: 8px 0 24px;
+    text-transform: uppercase; letter-spacing: 0.01em; font-weight: 400;
+  }
+  .pod-detail h3 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 0.9em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .pod-link {
+    display: inline-block; margin-top: 32px;
+    font-family: var(--display); font-size: clamp(14px, 1.3vw, 18px);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px; transition: opacity .2s;
+  }
+  .pod-link:hover { opacity: 0.65; }
+  @media (max-width: 900px) { .pod-feature { grid-template-columns: 1fr; gap: 32px; } }
+
   /* reel scroll */
   .reel-header {
     font-family: var(--display); font-size: 14px; letter-spacing: 0.16em;
@@ -423,7 +449,8 @@
   .events-pair {
     display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
   }
-  .event-card { display: block; }
+  .event-card { display: block; color: inherit; text-decoration: none; transition: opacity .2s; }
+  .event-card:hover { opacity: 0.8; }
   .event-info { margin-top: 16px; }
   .event-card h5 {
     font-family: var(--display);
@@ -764,6 +791,7 @@
   <nav class="nav">
     <a href="#about">About</a>
     <a href="#documentary">Documentary</a>
+    <a href="#podcast">Podcast</a>
     <a href="#editorial">Editorial</a>
     <a href="#events">Events</a>
     <a href="#consulting">Consulting</a>
@@ -878,7 +906,7 @@
 <!-- FORMATS INDEX -->
 <section class="section" id="formats">
   <div class="section-head">
-    <div class="section-label">By Format</div>
+    <div class="section-label"></div>
     <h2 class="section-title">Five ways the work <span class="hand">shows up</span>.</h2>
   </div>
   <div class="section-body">
@@ -1004,8 +1032,27 @@
   </div>
 </section>
 
-<!-- SOCIAL & VIDEO -->
+<!-- PODCAST -->
 <section class="section" id="podcast">
+  <div class="section-head">
+    <div class="section-label">Podcast</div>
+    <h2 class="section-title">Podcast production &amp; <span class="hand">directing</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="pod-feature">
+      <image-slot id="A-pod-sage" placeholder="Sage Takes Thyme — podcast art" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+      <div class="pod-detail">
+        <span class="proj-role">Producer &amp; Director</span>
+        <h3>Sage Takes <span class="hand">Thyme</span></h3>
+        <p class="proj-desc">A food and culture podcast exploring the intersection of identity, memory, and cooking — produced and directed from concept through post-production, including narrative structure, sound design, and editorial direction.</p>
+        <a class="pod-link" href="#">Listen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL & VIDEO -->
+<section class="section" id="social">
   <div class="section-head">
     <div class="section-label">Social &amp; Video</div>
     <h2 class="section-title">Social &amp; <span class="hand">video</span>.</h2>
@@ -1050,7 +1097,7 @@
 <section class="section" id="editorial">
   <div class="section-head">
     <div class="section-label">Editorial</div>
-    <h2 class="section-title">Written &amp; <span class="hand">visual work</span>.</h2>
+    <h2 class="section-title"><span class="hand">Editorial</span>.</h2>
   </div>
   <div class="section-body">
     <div class="ed-grid">
@@ -1130,20 +1177,20 @@
   </div>
   <div class="section-body">
     <div class="events-pair">
-      <div class="event-card">
+      <a class="event-card" href="#" target="_blank" rel="noopener">
         <image-slot id="A-evt-ddw" placeholder="Freedom By Design — Dubai Design Week" style="width:100%; aspect-ratio: 4/5;"></image-slot>
         <div class="event-info">
           <h5>Freedom By <span class="hand">Design</span></h5>
           <div class="event-venue">Dubai Design Week</div>
         </div>
-      </div>
-      <div class="event-card">
+      </a>
+      <a class="event-card" href="#" target="_blank" rel="noopener">
         <image-slot id="A-evt-soledxb" placeholder="Rhyme, Rhythm, Respect — SoleDXB" style="width:100%; aspect-ratio: 4/5;"></image-slot>
         <div class="event-info">
           <h5>Rhyme, Rhythm, <span class="hand">Respect</span></h5>
           <div class="event-venue">SoleDXB</div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
