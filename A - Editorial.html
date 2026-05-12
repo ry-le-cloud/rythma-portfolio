@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rythma Ekanayake — Creative Producer, Director, Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #888888;
+    --rule: #ececec;
+    --accent: #8c1f2d; /* burgundy */
+    --display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --hand: 'Caveat', cursive;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body { font-family: var(--display); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---- TOP BAR ---- */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 32px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .brand {
+    font-family: var(--display); font-size: 18px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .brand .hand { font-family: var(--hand); font-size: 22px; color: var(--accent); text-transform: none; letter-spacing: 0; margin-left: 8px; display: inline-block; transform: rotate(-3deg); }
+  .nav {
+    display: flex; gap: 26px;
+    font-family: var(--display); font-size: 13px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav a { color: var(--ink-2); transition: color .2s; }
+  .nav a:hover { color: var(--accent); }
+  @media (max-width: 900px) { .nav { display: none; } }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 160px 32px 100px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: end;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(80px, 14vw, 220px);
+    line-height: 0.88;
+    margin: 0;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+  }
+  .hero h1 .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 0.55em; line-height: 1;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-4deg);
+    vertical-align: middle; margin-left: 0.1em;
+  }
+  .hero-meta { padding-bottom: 16px; }
+  .roles {
+    display: flex; flex-direction: column; gap: 4px;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .roles span { display: block; }
+  .roles .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.15em; letter-spacing: 0;
+    text-transform: none;
+    display: inline-block; transform: rotate(-2deg);
+  }
+
+  /* ---- SECTION ---- */
+  .section { padding: 120px 32px; border-bottom: 1px solid var(--rule); }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    max-width: 1440px;
+    margin: 0 auto 72px;
+    align-items: start;
+  }
+  .section-label {
+    font-family: var(--display); font-size: 14px; letter-spacing: 0.16em;
+    color: var(--ink-3); text-transform: uppercase;
+    padding-top: 16px;
+    border-top: 1px solid var(--ink);
+  }
+  .section-title {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(52px, 7vw, 104px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .section-title .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 0.85em;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-3deg);
+  }
+  .section-body { max-width: 1440px; margin: 0 auto; }
+
+  /* ---- ABOUT ---- */
+  .about-text {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .about-text p {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.25;
+    margin: 0 0 24px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .about-text .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 1.15em;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block;
+  }
+
+  /* ---- SELECTED WORKS GRID ---- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 56px 32px;
+  }
+  .work {
+    display: block;
+    position: relative;
+  }
+  .work .slot {
+    width: 100%;
+    background: #f1f1f1;
+    margin-bottom: 16px;
+    overflow: hidden;
+    display: block;
+  }
+  .work .work-meta {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  }
+  .work .work-title {
+    font-family: var(--display);
+    font-size: clamp(26px, 2.4vw, 36px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    transition: color .2s;
+  }
+  .work .work-title .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 1.1em;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+    margin-left: 4px;
+  }
+  .work .work-role {
+    font-family: var(--hand);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 24px;
+    line-height: 1;
+    white-space: nowrap;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .work:hover .work-title { color: var(--accent); }
+
+  /* size variants */
+  .w-12 { grid-column: span 12; }
+  .w-8 { grid-column: span 8; }
+  .w-7 { grid-column: span 7; }
+  .w-6 { grid-column: span 6; }
+  .w-5 { grid-column: span 5; }
+  .w-4 { grid-column: span 4; }
+  .w-3 { grid-column: span 3; }
+
+  /* ---- FORMATS LIST ---- */
+  .formats-list { border-top: 1px solid var(--ink); }
+  .format-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+    gap: 24px;
+    cursor: pointer;
+    transition: padding .2s, color .2s;
+  }
+  .format-row:hover { padding-left: 16px; }
+  .format-row:hover .fname { color: var(--accent); }
+  .format-row .fnum {
+    font-family: var(--display); font-size: 18px; color: var(--ink-3);
+    letter-spacing: 0.1em;
+  }
+  .format-row .fname {
+    font-family: var(--display);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    transition: color .2s;
+  }
+  .format-row .fname .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 0.85em;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-3deg);
+    margin-left: 8px;
+  }
+  .format-row .farrow {
+    font-family: var(--display); font-size: 28px; text-align: right;
+    color: var(--ink-3);
+    transition: color .2s, transform .2s;
+  }
+  .format-row:hover .farrow { color: var(--accent); transform: translateX(8px); }
+
+  /* ---- DOCUMENTARY DETAIL ---- */
+  .doc-detail {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  }
+  .doc-detail .doc-img-block .slot { width: 100%; aspect-ratio: 4/5; }
+  .doc-detail h3 {
+    font-family: var(--display);
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.95;
+    margin: 0 0 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+  }
+  .doc-detail h3 .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 0.9em; line-height: 1;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .doc-detail p {
+    font-family: var(--display);
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    max-width: 28ch;
+    color: var(--ink);
+  }
+  .seasons { margin-top: 40px; }
+  .seasons .season {
+    display: grid; grid-template-columns: 60px 1fr; gap: 16px; align-items: baseline;
+    padding: 20px 0; border-top: 1px solid var(--rule);
+  }
+  .seasons .season:last-child { border-bottom: 1px solid var(--rule); }
+  .seasons .season .stitle {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.4vw, 34px);
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+  }
+  .seasons .season .stitle .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg); margin-right: 2px;
+  }
+  .seasons .season .sn {
+    font-family: var(--display);
+    font-size: 18px; color: var(--ink-3); letter-spacing: 0.08em;
+  }
+
+  /* ---- PODCAST ---- */
+  .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .pod-item .slot { width: 100%; aspect-ratio: 1/1; margin-bottom: 16px; }
+  .pod-item h4 {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.2vw, 30px);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+    transition: color .2s;
+  }
+  .pod-item h4 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .pod-item:hover h4 { color: var(--accent); }
+
+  /* ---- WRITING ---- */
+  .writing-list { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+  .writing-item {
+    display: grid; grid-template-columns: 60px 1fr auto 80px;
+    gap: 32px; align-items: center;
+    padding: 36px 0; border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: padding .2s;
+  }
+  .writing-item:hover { padding-left: 16px; }
+  .writing-item .wn {
+    font-family: var(--display);
+    font-size: 18px; color: var(--ink-3); letter-spacing: 0.08em;
+  }
+  .writing-item .wtitle {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.2vw, 48px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    transition: color .2s;
+  }
+  .writing-item .wtitle .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .writing-item .wpub {
+    font-family: var(--hand); font-weight: 600;
+    font-size: clamp(16px, 1.4vw, 20px);
+    color: var(--accent);
+    white-space: nowrap;
+    opacity: 0.85;
+    letter-spacing: 0;
+  }
+  .writing-item .warr {
+    font-family: var(--display); font-size: 24px;
+    text-align: right; color: var(--ink-3);
+    transition: color .2s, transform .2s;
+  }
+  .writing-item:hover .wtitle { color: var(--accent); }
+  .writing-item:hover .warr { color: var(--accent); transform: translateX(8px); }
+  @media (max-width: 900px) {
+    .writing-item { grid-template-columns: 40px 1fr 40px; }
+    .writing-item .wpub { display: none; }
+  }
+
+  /* ---- EVENTS ---- */
+  .events-feature {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-bottom: 80px;
+    align-items: center;
+  }
+  .events-feature .slot { width: 100%; aspect-ratio: 4/5; }
+  .events-feature h3 {
+    font-family: var(--display);
+    font-size: clamp(48px, 5.5vw, 88px);
+    margin: 0 0 24px;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+  }
+  .events-feature h3 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 0.95em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .events-feature p {
+    font-family: var(--display);
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    max-width: 32ch;
+  }
+  .events-feature p .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.2em; text-transform: none; letter-spacing: 0;
+    display: inline-block;
+  }
+
+  .events-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .event-card .slot { width: 100%; aspect-ratio: 4/3; margin-bottom: 14px; }
+  .event-card h5 {
+    font-family: var(--display);
+    font-size: 26px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+  }
+  .event-card h5 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+
+  /* ---- CAMPAIGNS / CLIENTS ---- */
+  .clients-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--ink);
+  }
+  .client {
+    aspect-ratio: 1.6 / 1;
+    display: grid; place-items: center;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--display);
+    font-size: clamp(20px, 1.8vw, 28px);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-align: center;
+    transition: background .2s, color .2s;
+  }
+  .client:nth-child(6n) { border-right: none; }
+  .client:hover { background: var(--accent); color: #fff; }
+  .client .hand {
+    font-family: var(--hand); font-weight: 600;
+    color: var(--accent);
+    font-size: 1.3em; line-height: 1;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .client:hover .hand { color: #fff; }
+
+  .campaign-feature {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-bottom: 64px;
+  }
+  .campaign .slot { width: 100%; aspect-ratio: 3/4; margin-bottom: 14px; }
+  .campaign h5 {
+    font-family: var(--display);
+    font-size: clamp(26px, 2.4vw, 36px);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+  }
+  .campaign h5 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 1.1em; text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-2deg);
+  }
+
+  /* ---- CONTACT ---- */
+  .contact {
+    padding: 160px 32px 100px;
+    background: var(--bg);
+  }
+  .contact-grid {
+    max-width: 1440px; margin: 0 auto;
+  }
+  .contact h2 {
+    font-family: var(--display);
+    font-size: clamp(100px, 16vw, 260px);
+    line-height: 0.85;
+    margin: 0 0 64px;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    font-weight: 400;
+  }
+  .contact h2 .hand {
+    font-family: var(--hand); font-weight: 600; color: var(--accent);
+    font-size: 0.55em; line-height: 1;
+    text-transform: none; letter-spacing: 0;
+    display: inline-block; transform: rotate(-4deg);
+    vertical-align: middle; margin-left: 0.1em;
+  }
+  .contact-links {
+    display: flex; flex-direction: row; flex-wrap: wrap;
+    gap: 40px 56px;
+    border-top: 1px solid var(--ink);
+    padding-top: 28px;
+  }
+  .contact-links a {
+    font-family: var(--display);
+    font-size: clamp(18px, 1.6vw, 22px);
+    display: inline-flex; align-items: baseline; gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .contact-links a:hover { color: var(--accent); }
+  .contact-links a .arrow {
+    font-family: var(--hand); color: var(--accent);
+    font-size: 22px; letter-spacing: 0;
+    text-transform: none;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--display); font-size: 13px;
+    color: var(--ink-3); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  footer a:hover { color: var(--accent); }
+  footer .hand {
+    font-family: var(--hand); color: var(--accent);
+    font-size: 22px; letter-spacing: 0;
+    text-transform: none; display: inline-block; transform: rotate(-2deg);
+  }
+
+  image-slot { background: #f1f1f1; }
+  image-slot[data-has-image="true"] { background: transparent; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .about-text, .doc-detail, .events-feature, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .pod-grid, .events-list, .campaign-feature { grid-template-columns: 1fr 1fr; }
+    .clients-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .client:nth-child(6n) { border-right: 1px solid var(--rule); }
+    .client:nth-child(3n) { border-right: none; }
+    .w-12, .w-8, .w-7, .w-6, .w-5, .w-4, .w-3 { grid-column: span 12; }
+    .format-row { grid-template-columns: 40px 1fr 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <a class="brand" href="#top">Rythma Ekanayake<span class="hand">/ portfolio</span></a>
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#documentary">Documentary</a>
+    <a href="#podcast">Podcast</a>
+    <a href="#writing">Writing</a>
+    <a href="#events">Events</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <h1>
+        Rythma<br>
+        Ekanayake<span class="hand">— hi there</span>
+      </h1>
+    </div>
+    <div class="hero-meta">
+      <div class="roles">
+        <span>Creative <span class="hand">producer</span></span>
+        <span>Director</span>
+        <span><span class="hand">Writer</span></span>
+        <span>Events Curator</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-head">
+    <div class="section-label">About</div>
+    <h2 class="section-title" style="font-size: 53px">A writer, producer &amp; <span class="hand">director</span> working at the intersection of culture, identity &amp; storytelling.</h2>
+  </div>
+  <div class="section-body">
+    <div class="about-text">
+      <div>
+        <p>Background in digital media, a philosophy degree &amp; nearly a decade of producing <span class="hand">stories that matter</span>.</p>
+      </div>
+      <div>
+        <p>I foreground the stories of women &amp; communities that rarely get to be seen on their <span class="hand">own terms</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="section" id="work">
+  <div class="section-head">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title" style="font-size: 60px">A small <span class="hand">index</span> of recent work.</h2>
+  </div>
+  <div class="section-body">
+    <div class="works-grid">
+
+      <a class="work w-7" href="#documentary">
+        <image-slot id="A-work-everything" placeholder="Everything Has Changed — film still" style="width:100%; aspect-ratio: 16/10;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Everything <span class="hand">has changed</span></div>
+          <div class="work-role">director</div>
+        </div>
+      </a>
+
+      <a class="work w-5" href="#campaigns">
+        <image-slot id="A-work-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">May Calamawy</div>
+          <div class="work-role">producer</div>
+        </div>
+      </a>
+
+      <a class="work w-4" href="#documentary">
+        <image-slot id="A-work-firdaus" placeholder="Firdaus Orchestra documentary" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Firdaus Orchestra</div>
+          <div class="work-role">producer</div>
+        </div>
+      </a>
+
+      <a class="work w-4" href="#events">
+        <image-slot id="A-work-womena" placeholder="Womena × Dubai Design Week" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">A World of <span class="hand">Womena</span></div>
+          <div class="work-role">curator</div>
+        </div>
+      </a>
+
+      <a class="work w-4" href="#documentary">
+        <image-slot id="A-work-freedom" placeholder="Freedom By Design short film" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title"><span class="hand">Freedom</span> By Design</div>
+          <div class="work-role">producer</div>
+        </div>
+      </a>
+
+      <a class="work w-7" href="#podcast">
+        <image-slot id="A-work-sage" placeholder="Sage Takes Thyme — podcast art" style="width:100%; aspect-ratio: 16/10;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Sage Takes <span class="hand">Thyme</span></div>
+          <div class="work-role">producer</div>
+        </div>
+      </a>
+
+      <a class="work w-5" href="#writing">
+        <image-slot id="A-work-dazed" placeholder="Dazed MENA — Voices From The Brink" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Voices From <span class="hand">The Brink</span></div>
+          <div class="work-role">writer</div>
+        </div>
+      </a>
+
+      <a class="work w-3" href="#campaigns">
+        <image-slot id="A-work-diesel" placeholder="Diesel editorial" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Diesel</div>
+          <div class="work-role">producer</div>
+        </div>
+      </a>
+
+      <a class="work w-4" href="#campaigns">
+        <image-slot id="A-work-nike" placeholder="Nike × Womena — Nelly Attar" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">Nike × Womena</div>
+          <div class="work-role">writer · producer</div>
+        </div>
+      </a>
+
+      <a class="work w-5" href="#events">
+        <image-slot id="A-work-soledxb" placeholder="SoleDXB activation" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+        <div class="work-meta">
+          <div class="work-title">SoleDXB</div>
+          <div class="work-role">curator</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS INDEX -->
+<section class="section" id="formats">
+  <div class="section-head">
+    <div class="section-label">By Format</div>
+    <h2 class="section-title">Five ways the work <span class="hand">shows up</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="formats-list">
+      <a class="format-row" href="#documentary">
+        <span class="fnum">01</span>
+        <span class="fname"><span class="hand">Documentary</span></span>
+        <span class="farrow">→</span>
+      </a>
+      <a class="format-row" href="#podcast">
+        <span class="fnum">02</span>
+        <span class="fname">Podcast</span>
+        <span class="farrow">→</span>
+      </a>
+      <a class="format-row" href="#writing">
+        <span class="fnum">03</span>
+        <span class="fname">Writing <span class="hand">— first love</span></span>
+        <span class="farrow">→</span>
+      </a>
+      <a class="format-row" href="#events">
+        <span class="fnum">04</span>
+        <span class="fname">Events</span>
+        <span class="farrow">→</span>
+      </a>
+      <a class="format-row" href="#campaigns">
+        <span class="fnum">05</span>
+        <span class="fname">Branded <span class="hand">campaigns</span></span>
+        <span class="farrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTARY -->
+<section class="section" id="documentary">
+  <div class="section-head">
+    <div class="section-label">Documentary</div>
+    <h2 class="section-title">Directing &amp; long-form <span class="hand">storytelling</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="doc-detail">
+      <div class="doc-img-block">
+        <image-slot id="A-doc-hero" placeholder="Everything Has Changed — hero still" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      </div>
+      <div>
+        <h3><span class="hand">Everything</span><br>Has Changed</h3>
+        <p>A docu-series that travels city to city — the realities we carry &amp; the new narratives we can <span class="hand">learn to adopt</span>.</p>
+
+        <div class="seasons">
+          <div class="season">
+            <span class="sn">S/01</span>
+            <span class="stitle">The Return of <span class="hand">Diaspora</span></span>
+          </div>
+          <div class="season">
+            <span class="sn">S/02</span>
+            <span class="stitle"><span class="hand">Cairo's</span> Creative Community</span>
+          </div>
+          <div class="season">
+            <span class="sn">S/03</span>
+            <span class="stitle">The Sounds of Saudi Arabia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px;">
+      <div>
+        <image-slot id="A-doc-firdaus" placeholder="Firdaus Orchestra still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div style="margin-top: 16px;">
+          <div class="work-title">Firdaus Orchestra</div>
+        </div>
+      </div>
+      <div>
+        <image-slot id="A-doc-freedom" placeholder="Freedom By Design still" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div style="margin-top: 16px;">
+          <div class="work-title"><span class="hand">Freedom</span> By Design</div>
+        </div>
+      </div>
+      <div>
+        <image-slot id="A-doc-may" placeholder="May Calamawy feature" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <div style="margin-top: 16px;">
+          <div class="work-title">May Calamawy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section class="section" id="podcast">
+  <div class="section-head">
+    <div class="section-label">Podcast Production</div>
+    <h2 class="section-title">Producing &amp; directing <span class="hand">sonic stories</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="pod-grid">
+      <div class="pod-item">
+        <image-slot id="A-pod-sage" placeholder="Sage Takes Thyme cover" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <h4>Sage Takes <span class="hand">Thyme</span></h4>
+      </div>
+      <div class="pod-item">
+        <image-slot id="A-pod-2" placeholder="Podcast cover" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <h4>Directed <span class="hand">episodes</span></h4>
+      </div>
+      <div class="pod-item">
+        <image-slot id="A-pod-3" placeholder="Podcast cover" style="width:100%; aspect-ratio: 1/1;"></image-slot>
+        <h4>Studio <span class="hand">production</span></h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="section" id="writing">
+  <div class="section-head">
+    <div class="section-label">Writing</div>
+    <h2 class="section-title">Words are the <span class="hand">first love</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="writing-list">
+      <a class="writing-item" href="#">
+        <span class="wn">01</span>
+        <span class="wtitle">Voices From <span class="hand">The Brink</span></span>
+        <span class="wpub">for Dazed MENA</span>
+        <span class="warr">→</span>
+      </a>
+      <a class="writing-item" href="#">
+        <span class="wn">02</span>
+        <span class="wtitle">Do women in the region need <span class="hand">feminism?</span></span>
+        <span class="wpub">for Womena</span>
+        <span class="warr">→</span>
+      </a>
+      <a class="writing-item" href="#">
+        <span class="wn">03</span>
+        <span class="wtitle">Building for <span class="hand">climate resilience</span></span>
+        <span class="wpub">for Womena</span>
+        <span class="warr">→</span>
+      </a>
+      <a class="writing-item" href="#">
+        <span class="wn">04</span>
+        <span class="wtitle">Boutique firms <span class="hand">lead the way</span></span>
+        <span class="wpub">for Dubai Design Week</span>
+        <span class="warr">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section" id="events">
+  <div class="section-head">
+    <div class="section-label">Events &amp; Curation</div>
+    <h2 class="section-title">Cultural <span class="hand">events</span>, installations &amp; programming.</h2>
+  </div>
+  <div class="section-body">
+    <div class="events-feature">
+      <image-slot id="A-evt-womena" placeholder="A World of Womena — installation" style="width:100%; aspect-ratio: 4/5;"></image-slot>
+      <div>
+        <h3>A World of<br><span class="hand">Womena</span></h3>
+        <p>Multi-sensory exhibition for Dubai Design Week — storytelling, design &amp; <span class="hand">expression</span>.</p>
+      </div>
+    </div>
+
+    <div class="events-list">
+      <div class="event-card">
+        <image-slot id="A-evt-soledxb" placeholder="SoleDXB" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+        <h5>SoleDXB</h5>
+      </div>
+      <div class="event-card">
+        <image-slot id="A-evt-2" placeholder="Programme — fill in" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+        <h5>Live <span class="hand">programming</span></h5>
+      </div>
+      <div class="event-card">
+        <image-slot id="A-evt-3" placeholder="Programme — fill in" style="width:100%; aspect-ratio: 4/3;"></image-slot>
+        <h5>Community gatherings</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section class="section" id="campaigns">
+  <div class="section-head">
+    <div class="section-label">Branded Campaigns</div>
+    <h2 class="section-title">Brands, <span class="hand">told well</span>.</h2>
+  </div>
+  <div class="section-body">
+    <div class="campaign-feature">
+      <div class="campaign">
+        <image-slot id="A-camp-diesel" placeholder="Diesel campaign" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <h5><span class="hand">Diesel</span></h5>
+      </div>
+      <div class="campaign">
+        <image-slot id="A-camp-pinko" placeholder="Pinko campaign" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <h5>Pinko</h5>
+      </div>
+      <div class="campaign">
+        <image-slot id="A-camp-nike" placeholder="Nike campaign" style="width:100%; aspect-ratio: 3/4;"></image-slot>
+        <h5><span class="hand">Nike</span></h5>
+      </div>
+    </div>
+
+    <div class="section-label" style="border-top: 1px solid var(--ink); padding-top: 16px; margin-bottom: 0;">Selected Clients</div>
+    <div class="clients-grid" style="margin-top: 32px;">
+      <div class="client">Nike</div>
+      <div class="client"><span class="hand">Diesel</span></div>
+      <div class="client">Pinko</div>
+      <div class="client"><span class="hand">Womena</span></div>
+      <div class="client">Dazed MENA</div>
+      <div class="client"><span class="hand">Dubai Design Week</span></div>
+      <div class="client">SoleDXB</div>
+      <div class="client"><span class="hand">Art Dubai Group</span></div>
+      <div class="client">Villa 88</div>
+      <div class="client"><span class="hand">Cindy Chao</span></div>
+      <div class="client">Firdaus Orchestra</div>
+      <div class="client"><span class="hand">+ many more</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <h2>Let's work<br><span class="hand">together.</span></h2>
+    <div class="contact-links">
+      <a href="mailto:rythmale@gmail.com"><span>rythmale@gmail.com</span><span class="arrow">email</span></a>
+      <a href="https://www.instagram.com/rythmae/" target="_blank" rel="noopener"><span>@rythmae</span><span class="arrow">instagram</span></a>
+      <a href="tel:+971561098629"><span>+971 56 109 8629</span><span class="arrow">phone</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© Rythma Ekanayake</span>
+  <span class="hand">made with love</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+</body>
+</html>
