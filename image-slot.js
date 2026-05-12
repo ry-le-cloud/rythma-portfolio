@@ -76,6 +76,10 @@
     loadP = fetch(STATE_FILE)
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => {
+        // Fall back to localStorage when no sidecar is available
+        if (!j) {
+          try { j = JSON.parse(localStorage.getItem('image-slots') || 'null'); } catch (_) {}
+        }
         // Merge: sidecar loses to any in-memory change that raced ahead of
         // the fetch (drop or clear) so neither is clobbered by hydration.
         if (j && typeof j === 'object') {
@@ -93,7 +97,18 @@
         }
         tombstones.clear();
       })
-      .catch(() => {})
+      .catch(() => {
+        // On fetch failure (e.g. GitHub Pages), load from localStorage
+        try {
+          const j = JSON.parse(localStorage.getItem('image-slots') || 'null');
+          if (j && typeof j === 'object') {
+            const merged = Object.assign({}, j, slots);
+            for (const id of tombstones) delete merged[id];
+            slots = merged;
+          }
+        } catch (_) {}
+        tombstones.clear();
+      })
       .then(() => { loaded = true; subs.forEach((fn) => fn()); });
     return loadP;
   }
@@ -106,6 +121,8 @@
   let saveDirty = false;
   function save() {
     if (saving) { saveDirty = true; return; }
+    // Always persist to localStorage so images survive refresh on any host
+    try { localStorage.setItem('image-slots', JSON.stringify(slots)); } catch (_) {}
     const w = window.omelette && window.omelette.writeFile;
     if (!w) return;
     saving = true;
